@@ -1,4 +1,70 @@
 {
+  "capcut": {
+    "capcut_try_it_button": [
+      "#try-it-button"
+    ],
+    "capcut_style_style_key_1": [
+      "#style-option-1"
+    ],
+    "capcut_voice_voice_key_1": [
+      "#voice-option-1"
+    ],
+    "capcut_script_input": [
+      "#script-input"
+    ],
+    "capcut_generate_button": [
+      "#generate"
+    ],
+    "capcut_export_button": [
+      "#export"
+    ],
+    "capcut_captions_menu_button": [
+      "#captions-menu"
+    ],
+    "capcut_captions_choice_button": [
+      "#caption-choice"
+    ],
+    "capcut_export_resolution_dropdown": [
+      "#resolution-dropdown"
+    ],
+    "capcut_export_resolution_option_1080p": [
+      "#res-1080p"
+    ],
+    "capcut_export_framerate_dropdown": [
+      "#fps-dropdown"
+    ],
+    "capcut_export_framerate_option_30fps": [
+      "#fps-30"
+    ],
+    "capcut_export_confirm_button": [
+      "#export-confirm"
+    ]
+  },
+  "chatgpt": {
+    "prompt_textarea": [
+      "#prompt-textarea"
+    ],
+    "send_button": [
+      "//button[@data-testid='send-button']"
+    ],
+    "response_regenerate_button": [
+      "//button[contains(., 'Regenerate')]"
+    ],
+    "response_area_last": [
+      "(//div[contains(@class, 'markdown prose')])[last()]"
+    ]
+  },
+  "grok": {
+    "prompt_input": [
+      "#grok-input"
+    ],
+    "submit_button": [
+      "#grok-submit"
+    ],
+    "response_output_last": [
+      ".grok-response-last"
+    ]
+  },
   "CAPCUT": {
     "try_it": [
       "//*[@id=\"ai-creator\"]/div/div[2]/div/div/div/div[1]/div/div/div[1]/div[2]/div[1]/div[1]",
@@ -327,17 +393,17 @@
       "quality": {
         "high": [
           "//*[@id=\"lv-select-popup-6\"]/div/div/li[1]",
-          "//li[contains(@class, \"select-option\") and (contains(., \"High\") or contains(., \"Ø¹Ø§Ù„ÙŠØ©\"))]",
+          "//li[contains(@class, \"select-option\") and (contains(., \"High\") or contains(., \"\u00d8\u00b9\u00d8\u00a7\u00d9\u201e\u00d9\u0160\u00d8\u00a9\"))]",
           "//li[contains(@class, \"option\") and contains(., \"High\")]"
         ],
         "recommended": [
           "//*[@id=\"lv-select-popup-6\"]/div/div/li[2]",
-          "//li[contains(@class, \"select-option\") and (contains(., \"Recommended\") or contains(., \"Ù…ÙˆØµÙ‰ Ø¨Ù‡\"))]",
+          "//li[contains(@class, \"select-option\") and (contains(., \"Recommended\") or contains(., \"\u00d9\u2026\u00d9\u02c6\u00d8\u00b5\u00d9\u2030 \u00d8\u00a8\u00d9\u2021\"))]",
           "//li[contains(@class, \"option\") and contains(., \"Recommended\")]"
         ],
         "faster_export": [
           "//*[@id=\"lv-select-popup-6\"]/div/div/li[3]",
-          "//li[contains(@class, \"select-option\") and (contains(., \"Faster export\") or contains(., \"Ø£Ø³Ø±Ø¹\"))]",
+          "//li[contains(@class, \"select-option\") and (contains(., \"Faster export\") or contains(., \"\u00d8\u00a3\u00d8\u00b3\u00d8\u00b1\u00d8\u00b9\"))]",
           "//li[contains(@class, \"option\") and contains(., \"Faster\")]"
         ]
       },
@@ -521,4 +587,3 @@
     "DONE_BUTTON_ALT": "//button[contains(., 'Done') or contains(@aria-label, 'Done')]"
   }
 }
-
