@@ -1,7 +1,9 @@
 {
   "youtube": {
     "credentials_file": "Data/token.json",
+    "_comment_credentials_file": "Path to store user's OAuth 2.0 credentials. Auto-generated/updated after first successful authentication.",
     "client_secrets_config": {
+      "_comment_client_secrets_config": "Embedded application client secrets (obtained from Google Cloud Console). Preferred if present.",
       "web": {
         "client_id": "27446306438-en4qjnogsdu5j0brroob04qn0v9vd2j7.apps.googleusercontent.com",
         "project_id": "youtubeuploader-459920",
@@ -11,9 +13,12 @@
         "client_secret": "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",
         "redirect_uris": ["http://localhost:8080"]
       }
-    }
+    },
+    "_comment_client_secrets_file_alternative": "Alternatively, instead of \"client_secrets_config\", you can use \"client_secrets_file\": \"path/to/your/client_secret.json\"",
+    "_comment_client_secrets_priority": "If both \"client_secrets_config\" and \"client_secrets_file\" are specified, \"client_secrets_config\" will be used."
   },
   "gemini": {
-    "api_key": "AIzaSyDYTt-r7RqRyJdBwh0YvSk8rzBrj8uyd3I"
+    "api_key": "AIzaSyDYTt-r7RqRyJdBwh0YvSk8rzBrj8uyd3I",
+    "_comment_api_key": "Your API key for Google Gemini."
   }
 }
