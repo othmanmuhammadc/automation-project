@@ -1,72 +1,6 @@
 {
   "capcut": {
-    "capcut_try_it_button": [
-      "#try-it-button"
-    ],
-    "capcut_style_style_key_1": [
-      "#style-option-1"
-    ],
-    "capcut_voice_voice_key_1": [
-      "#voice-option-1"
-    ],
-    "capcut_script_input": [
-      "#script-input"
-    ],
-    "capcut_generate_button": [
-      "#generate"
-    ],
-    "capcut_export_button": [
-      "#export"
-    ],
-    "capcut_captions_menu_button": [
-      "#captions-menu"
-    ],
-    "capcut_captions_choice_button": [
-      "#caption-choice"
-    ],
-    "capcut_export_resolution_dropdown": [
-      "#resolution-dropdown"
-    ],
-    "capcut_export_resolution_option_1080p": [
-      "#res-1080p"
-    ],
-    "capcut_export_framerate_dropdown": [
-      "#fps-dropdown"
-    ],
-    "capcut_export_framerate_option_30fps": [
-      "#fps-30"
-    ],
-    "capcut_export_confirm_button": [
-      "#export-confirm"
-    ]
-  },
-  "chatgpt": {
-    "prompt_textarea": [
-      "#prompt-textarea"
-    ],
-    "send_button": [
-      "//button[@data-testid='send-button']"
-    ],
-    "response_regenerate_button": [
-      "//button[contains(., 'Regenerate')]"
-    ],
-    "response_area_last": [
-      "(//div[contains(@class, 'markdown prose')])[last()]"
-    ]
-  },
-  "grok": {
-    "prompt_input": [
-      "#grok-input"
-    ],
-    "submit_button": [
-      "#grok-submit"
-    ],
-    "response_output_last": [
-      ".grok-response-last"
-    ]
-  },
-  "CAPCUT": {
-    "try_it": [
+    "try_it_button": [
       "//*[@id=\"ai-creator\"]/div/div[2]/div/div/div/div[1]/div/div/div[1]/div[2]/div[1]/div[1]",
       "//*[@id=\"ai-creator\"]/div/div[2]/div/div/div/div[1]/div/div/div[1]/div[2]/div[1]",
       "//div[contains(@class, \"button\") and contains(., \"Try\")]",
@@ -74,12 +8,28 @@
       "//button[contains(., \"Try\") or contains(., \"Start\")]",
       "//button[contains(@class, \"primary\")]"
     ],
-    "script_input": [
+    "script_input_area": [
       "//*[@id=\"ai-creator\"]/div/div[2]/div/div/div/div[2]/div/div[2]/div[2]/div[2]/div/textarea",
       "//textarea[contains(@placeholder, \"script\") or contains(@placeholder, \"Script\")]",
       "//div[contains(@class, \"script\")]//textarea",
       "//div[contains(@class, \"input-container\")]//textarea",
       "//textarea"
+    ],
+    "generate_button": [
+      "#generate"
+    ],
+    "export_button": [
+      "//*[@id=\"ai-creator\"]/div/div[1]/div[3]/div[1]/div/div[3]/div/button",
+      "//button[contains(., \"Export\") or contains(., \"Download\")]",
+      "//span[contains(text(), \"Export\")]/ancestor::button",
+      "//div[contains(@class, \"header\")]//button[contains(@class, \"primary\")]",
+      "//button[contains(@class, \"download\") or contains(@class, \"export\")]"
+    ],
+    "captions_menu_button": [
+      "#captions-menu"
+    ],
+    "captions_choice_option": [
+      "#caption-choice"
     ],
     "styles": {
       "realistic_film": [
@@ -251,13 +201,6 @@
         "//div[contains(@class, \"style-item\") and contains(., \"Neoclassic\")]"
       ]
     },
-    "voice_dropdown": [
-      "//*[@id=\"ai-creator\"]/div/div[2]/div/div/div/div[2]/div/div[2]/div[2]/div[2]/div/div[1]/div/span/span",
-      "//span[contains(@class, \"select\") and contains(@class, \"voice\")]",
-      "//div[contains(@class, \"voice\")]//span[contains(@class, \"select\")]",
-      "//div[contains(@class, \"voice-selector\")]",
-      "//div[contains(text(), \"Voice\") or contains(text(), \"Voice Type\")]/parent::div//div[contains(@class, \"select\")]"
-    ],
     "voices": {
       "valentino": [
         "//*[@id=\"lv-select-popup-0\"]/div/div/li[2]/div/div",
@@ -362,51 +305,7 @@
         "//li[contains(@class, \"option\") and contains(., \"Santa II\")]"
       ]
     },
-    "aspect_ratio": [
-      "//*[@id=\"ai-creator\"]/div/div[2]/div/div/div/div[2]/div/div[2]/div[1]/section/section[2]/div[2]/div[2]/div[2]",
-      "//*[@id=\"ai-creator\"]/div/div[2]/div/div/div/div[2]/div/div[2]/div[1]/section/section[2]/div[2]/div[2]",
-      "//*[@id=\"ai-creator\"]/div/div[2]/div/div/div/div[2]/div/div[2]/div[1]/section/section[2]/div[2]/div[1]",
-      "//div[contains(@class, \"aspect-ratio\")]//div[contains(@class, \"item\")][2]",
-      "//div[contains(text(), \"9:16\") or contains(text(), \"Vertical\")]",
-      "//div[contains(@class, \"aspect-ratio-option\") and contains(., \"9:16\")]"
-    ],
-    "export_button": [
-      "//*[@id=\"ai-creator\"]/div/div[1]/div[3]/div[1]/div/div[3]/div/button",
-      "//button[contains(., \"Export\") or contains(., \"Download\")]",
-      "//span[contains(text(), \"Export\")]/ancestor::button",
-      "//div[contains(@class, \"header\")]//button[contains(@class, \"primary\")]",
-      "//button[contains(@class, \"download\") or contains(@class, \"export\")]"
-    ],
     "export_options": {
-      "quality_dropdown_trigger": [
-        "//div[contains(@class, \"export-modal\")]//div[contains(., \"Quality\")]/following-sibling::div//div[contains(@class, \"select\")]",
-        "//div[text()=\"Quality\"]/parent::div//div[contains(@class, \"select\")]"
-      ],
-      "resolution_dropdown_trigger": [
-        "//div[contains(@class, \"export-modal\")]//div[contains(., \"Resolution\")]/following-sibling::div//div[contains(@class, \"select\")]",
-        "//div[text()=\"Resolution\"]/parent::div//div[contains(@class, \"select\")]"
-      ],
-      "framerate_dropdown_trigger": [
-        "//div[contains(@class, \"export-modal\")]//div[contains(., \"Frame Rate\")]/following-sibling::div//div[contains(@class, \"select\")]",
-        "//div[text()=\"Frame Rate\"]/parent::div//div[contains(@class, \"select\")]"
-      ],
-      "quality": {
-        "high": [
-          "//*[@id=\"lv-select-popup-6\"]/div/div/li[1]",
-          "//li[contains(@class, \"select-option\") and (contains(., \"High\") or contains(., \"\u00d8\u00b9\u00d8\u00a7\u00d9\u201e\u00d9\u0160\u00d8\u00a9\"))]",
-          "//li[contains(@class, \"option\") and contains(., \"High\")]"
-        ],
-        "recommended": [
-          "//*[@id=\"lv-select-popup-6\"]/div/div/li[2]",
-          "//li[contains(@class, \"select-option\") and (contains(., \"Recommended\") or contains(., \"\u00d9\u2026\u00d9\u02c6\u00d8\u00b5\u00d9\u2030 \u00d8\u00a8\u00d9\u2021\"))]",
-          "//li[contains(@class, \"option\") and contains(., \"Recommended\")]"
-        ],
-        "faster_export": [
-          "//*[@id=\"lv-select-popup-6\"]/div/div/li[3]",
-          "//li[contains(@class, \"select-option\") and (contains(., \"Faster export\") or contains(., \"\u00d8\u00a3\u00d8\u00b3\u00d8\u00b1\u00d8\u00b9\"))]",
-          "//li[contains(@class, \"option\") and contains(., \"Faster\")]"
-        ]
-      },
       "resolution": {
         "360p": [
           "//*[@id=\"lv-select-popup-7\"]/div/div/li[1]",
@@ -465,109 +364,49 @@
           "//li[contains(@class, \"select-option\") and contains(., \"60\")]",
           "//li[contains(@class, \"option\") and contains(., \"60\")]"
         ]
-      }
-    },
-    "confirm_export_button": [
-      "/html/body/div[5]/span/div/div[3]/button",
-      "//div[contains(@class, \"export-modal\")]//div[contains(@class, \"footer\")]//button",
-      "//div[contains(@class, \"dialog\")]//button[contains(., \"Export\")]",
-      "//div[contains(@class, \"modal\")]//button[contains(@class, \"confirm\")]"
-    ]
+      },
+      "resolution_dropdown": [
+        "//div[contains(@class, \"export-modal\")]//div[contains(., \"Resolution\")]/following-sibling::div//div[contains(@class, \"select\")]",
+        "//div[text()=\"Resolution\"]/parent::div//div[contains(@class, \"select\")]"
+      ],
+      "frame_rate_dropdown": [
+        "//div[contains(@class, \"export-modal\")]//div[contains(., \"Frame Rate\")]/following-sibling::div//div[contains(@class, \"select\")]",
+        "//div[text()=\"Frame Rate\"]/parent::div//div[contains(@class, \"select\")]"
+      ],
+      "confirm_button": [
+        "/html/body/div[5]/span/div/div[3]/button",
+        "//div[contains(@class, \"export-modal\")]//div[contains(@class, \"footer\")]//button",
+        "//div[contains(@class, \"dialog\")]//button[contains(., \"Export\")]",
+        "//div[contains(@class, \"modal\")]//button[contains(@class, \"confirm\")]"
+      ]
+    }
   },
-  "CHATGPT": {
-    "input_field": [
-      "//*[@id=\"prompt-textarea\"]",
-      "//textarea[contains(@placeholder, 'Message') or contains(@placeholder, 'Type') or contains(@id, 'prompt')]",
-      "//textarea[@data-testid='chat-textarea']",
-      "//textarea[contains(@class, 'text-input')]",
-      "//div[@role='textbox']",
-      "//div[@contenteditable='true']",
-      "//*[contains(@class, 'ChatMessageInputFooter')]//textarea",
-      "//footer//textarea",
-      "//div[contains(@class, 'chat-input')]//textarea",
-      "//textarea"
+  "chatgpt": {
+    "prompt_textarea": [
+      "#prompt-textarea"
     ],
     "send_button": [
-      "//*[@id=\"composer-submit-button\"]",
-      "//*[@id=\"composer-submit-button\"]/svg",
-      "//button[contains(@aria-label, 'Send')]",
-      "//button[contains(@class, 'submit') or contains(@class, 'send')]",
-      "//button[contains(text(), 'Send') or contains(text(), 'Submit')]",
-      "//footer//button[not(contains(@disabled, 'true'))]",
-      "//*[contains(@class, 'send-button') or contains(@class, 'submit-button')]",
-      "//textarea/following-sibling::button",
-      "//button[contains(@class, 'chat-send')]"
+      "//button[@data-testid='send-button']"
     ],
-    "response": [
-      "//*[@data-message-author-role=\"assistant\"]//div[contains(@class, \"markdown\")]",
-      "//div[@data-message-author-role='assistant']",
-      "//div[contains(@class, 'markdown')]",
-      "//div[@data-message-author-role='assistant']",
-      "//div[contains(@class, 'response')]",
-      "//div[contains(@class, 'result')]",
-      "//div[contains(@class, 'answer')]",
-      "//div[contains(@class, 'bot-message')]",
-      "//div[contains(@class, 'conversation')]//div[contains(@class, 'message')][last()]",
-      "//div[contains(@class, 'assistant')]",
-      "//div[contains(@class, 'message-content')]",
-      "//div[contains(@class, 'agent-turn')]"
+    "response_regenerate_button": [
+      "//button[contains(., 'Regenerate')]"
     ],
-    "response_loading": [
-      "//div[contains(@class, 'result-streaming')]",
-      "//div[contains(@class, 'loading')]",
-      "//button[contains(text(), 'Stop') or contains(text(), 'Cancel')]",
-      "//div[contains(@class, 'generating')]",
-      "//button[contains(@aria-label, 'Stop generating')]",
-      "//svg[contains(@class, 'animate-spin')]"
+    "response_area_last": [
+      "(//div[contains(@class, 'markdown prose')])[last()]"
     ]
   },
-  "GROK": {
-    "input_field": [
-      "/html/body/div[1]/div/main/div[2]/div[1]/div[2]/div/form/div/div/div[2]/textarea",
-      "//textarea[contains(@placeholder, 'What')]",
-      "//textarea[@data-testid='prompt-textarea']",
-      "//div[@role='textbox']",
-      "//div[@contenteditable='true']",
-      "//textarea",
-      "//*[contains(@class, 'input-box') or contains(@class, 'chat-input')]",
-      "//div[contains(@class, 'chatbox')]//textarea",
-      "//form//textarea"
+  "grok": {
+    "prompt_input": [
+      "#grok-input"
     ],
-    "send_button": [
-      "/html/body/div[1]/div/main/div[2]/div[1]/div[2]/div/form/div/div/div[3]/div[2]/button/div",
-      "/html/body/div[1]/div/main/div[2]/div[1]/div[2]/div/form/div/div/div[3]/div[2]/button/div/svg",
-      "//button[contains(@aria-label, 'Send')]",
-      "//button[contains(@class, 'submit')]",
-      "//button[contains(text(), 'Send')]",
-      "//button[contains(@class, 'send')]",
-      "//*[contains(@class, 'send-button')]",
-      "//button[contains(@data-testid, 'send')]",
-      "//form//button[not(contains(@disabled, 'true'))]",
-      "//textarea/following-sibling::button"
+    "submit_button": [
+      "#grok-submit"
     ],
-    "response": [
-      "/html/body/div[1]/div/main/div[2]/div[1]/div/div[2]/div[2]/div/div[1]/div/p",
-      "/html/body/div[1]/div/main/div[2]/div[1]/div/div[2]/div[2]/div/div[1]/div",
-      "//div[contains(@class, 'markdown')]",
-      "//div[@role='presentation']",
-      "//div[contains(@class, 'response')]",
-      "//div[contains(@class, 'result')]",
-      "//div[contains(@class, 'answer')]",
-      "//div[contains(@class, 'bot-message')]",
-      "//div[contains(@class, 'chat-message') and not(contains(@class, 'user'))]"
-    ],
-    "response_loading": [
-      "//div[contains(@class, 'loading')]",
-      "//div[contains(@class, 'typing')]",
-      "//div[contains(@class, 'thinking')]",
-      "//div[contains(@class, 'spinner')]",
-      "//div[contains(@class, 'progress')]",
-      "//textarea[@disabled]",
-      "//button[contains(@class, 'stop')]",
-      "//svg[contains(@class, 'animate-spin')]"
+    "response_output_last": [
+      ".grok-response-last"
     ]
   },
-  "YOUTUBE": {
+  "youtube": {
     "CREATE_BUTTON": "#create-icon",
     "UPLOAD_OPTION": "//tp-yt-paper-item[contains(.,'Upload videos')]",
     "FILE_INPUT": "//input[@type='file']",
@@ -587,8 +426,3 @@
     "DONE_BUTTON_ALT": "//button[contains(., 'Done') or contains(@aria-label, 'Done')]"
   }
 }
-
-
-
-
-
