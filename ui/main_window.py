@@ -8,6 +8,7 @@ import tkinter as tk
 from tkinter import ttk
 import os
 from pathlib import Path
+import configparser
 
 from .components.sidebar import Sidebar
 from .components.topbar import Topbar
@@ -30,17 +31,52 @@ class MainWindow:
             'text_primary': '#ffffff',    # Primary text
             'text_secondary': '#b3b3b3',  # Secondary text
             'border': '#404040',          # Border color
-            'hover': '#4a4a4a'           # Hover state
+            'hover': '#404040'            # Hover state
         }
 
-        self.setup_layout()
+        # Window configuration
+        self.setup_window()
 
-    def setup_layout(self):
-        """Setup the main window layout"""
-        # Configure root
-        self.root.configure(fg_color=self.colors['bg_primary'])
+        # Create main layout
+        self.create_layout()
 
-        # Create main container
+        # Initialize components
+        self.create_components()
+
+    def setup_window(self):
+        """Configure main window properties"""
+        # Set appearance mode and color theme
+        ctk.set_appearance_mode("dark")
+        ctk.set_default_color_theme("blue")
+
+        # Window properties
+        width = int(self.gui_config.get('Window_width', 1280))
+        height = int(self.gui_config.get('Window_height', 720))
+
+        self.root.geometry(f"{width}x{height}")
+        self.root.title(self.config['Default']['the_tool_name'])
+        self.root.configure(bg=self.colors['bg_primary'])
+
+        # Make window resizable if configured
+        resizable = self.gui_config.get('Resizable', 'yes').lower() == 'yes'
+        self.root.resizable(resizable, resizable)
+
+        # Center window on screen
+        self.center_window(width, height)
+
+    def center_window(self, width, height):
+        """Center the window on screen"""
+        screen_width = self.root.winfo_screenwidth()
+        screen_height = self.root.winfo_screenheight()
+
+        x = (screen_width - width) // 2
+        y = (screen_height - height) // 2
+
+        self.root.geometry(f"{width}x{height}+{x}+{y}")
+
+    def create_layout(self):
+        """Create main layout structure"""
+        # Main container
         self.main_container = ctk.CTkFrame(
             self.root,
             fg_color=self.colors['bg_primary'],
@@ -48,85 +84,84 @@ class MainWindow:
         )
         self.main_container.pack(fill="both", expand=True)
 
-        # Setup grid weights
-        self.main_container.grid_rowconfigure(1, weight=1)
+        # Configure grid weights
         self.main_container.grid_columnconfigure(1, weight=1)
+        self.main_container.grid_rowconfigure(1, weight=1)
 
-        # Create layout components
-        self.create_topbar()
-        self.create_sidebar()
-        self.create_content_area()
-
-    def create_topbar(self):
-        """Create the top bar"""
-        topbar_height = int(self.gui_config.get('Topbar_height', '60'))
-
-        self.topbar = Topbar(
-            self.main_container,
-            height=topbar_height,
-            colors=self.colors,
-            config=self.config
-        )
-        self.topbar.grid(row=0, column=0, columnspan=2, sticky="ew")
-
-    def create_sidebar(self):
-        """Create the sidebar"""
-        sidebar_width = int(self.gui_config.get('Sidebar_width', '80'))
-
-        self.sidebar = Sidebar(
+        # Sidebar frame
+        sidebar_width = int(self.gui_config.get('Sidebar_width', 80))
+        self.sidebar_frame = ctk.CTkFrame(
             self.main_container,
             width=sidebar_width,
-            colors=self.colors,
-            config=self.config
+            fg_color=self.colors['bg_secondary'],
+            corner_radius=0
         )
-        self.sidebar.grid(row=1, column=0, sticky="nsw")
+        self.sidebar_frame.grid(row=0, column=0, rowspan=2, sticky="nsw")
+        self.sidebar_frame.grid_propagate(False)
 
-    def create_content_area(self):
-        """Create the main content area"""
-        self.content_area = ContentArea(
+        # Topbar frame
+        topbar_height = int(self.gui_config.get('Topbar_height', 60))
+        self.topbar_frame = ctk.CTkFrame(
             self.main_container,
-            colors=self.colors,
-            config=self.config,
-            sidebar=self.sidebar
+            height=topbar_height,
+            fg_color=self.colors['bg_secondary'],
+            corner_radius=0
         )
-        self.content_area.grid(row=1, column=1, sticky="nsew", padx=(1, 0))
+        self.topbar_frame.grid(row=0, column=1, sticky="ew")
+        self.topbar_frame.grid_propagate(False)
+
+        # Content area frame
+        self.content_frame = ctk.CTkFrame(
+            self.main_container,
+            fg_color=self.colors['bg_primary'],
+            corner_radius=0
+        )
+        self.content_frame.grid(row=1, column=1, sticky="nsew", padx=1, pady=1)
+
+    def create_components(self):
+        """Initialize all UI components"""
+        # Create sidebar
+        self.sidebar = Sidebar(
+            self.sidebar_frame,
+            self.colors,
+            self.gui_config,
+            self.on_sidebar_action
+        )
+
+        # Create topbar
+        self.topbar = Topbar(
+            self.topbar_frame,
+            self.colors,
+            self.gui_config,
+            self.config['Default']['the_tool_name']
+        )
+
+        # Create content area
+        self.content_area = ContentArea(
+            self.content_frame,
+            self.colors,
+            self.gui_config,
+            self.config['Default']['the_send_bar_message']
+        )
+
+    def on_sidebar_action(self, action):
+        """Handle sidebar button clicks"""
+        # This will be implemented to handle different sidebar actions
+        # For now, just update the content area
+        self.content_area.set_mode(action)
 
     def get_icon_path(self, icon_name):
-        """Get the full path to an icon"""
-        icons_folder = self.config['Paths'].get('Icons_folder', './assets/icons/')
+        """Get full path to icon file"""
+        icons_folder = self.config['Paths']['Icons_folder']
         return os.path.join(icons_folder, icon_name)
 
-    def update_theme(self, theme):
-        """Update the application theme"""
-        if theme == "light":
-            self.colors.update({
-                'bg_primary': '#ffffff',
-                'bg_secondary': '#f5f5f5',
-                'bg_tertiary': '#e8e8e8',
-                'text_primary': '#000000',
-                'text_secondary': '#666666',
-                'border': '#d0d0d0',
-                'hover': '#e0e0e0'
-            })
-        else:
-            self.colors.update({
-                'bg_primary': '#1a1a1a',
-                'bg_secondary': '#2d2d2d',
-                'bg_tertiary': '#3d3d3d',
-                'text_primary': '#ffffff',
-                'text_secondary': '#b3b3b3',
-                'border': '#404040',
-                'hover': '#4a4a4a'
-            })
+    def apply_glassmorphism(self, widget, alpha=0.8):
+        """Apply glassmorphism effect to widget (placeholder for future implementation)"""
+        # This would require additional libraries or custom implementation
+        # For now, we'll use subtle transparency and blur-like effects with colors
+        pass
 
-        # Refresh all components
-        self.refresh_components()
 
-    def refresh_components(self):
-        """Refresh all UI components with new colors"""
-        self.topbar.update_colors(self.colors)
-        self.sidebar.update_colors(self.colors)
-        self.content_area.update_colors(self.colors)
 
 
 

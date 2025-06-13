@@ -4,10 +4,9 @@ Handles reading and writing configuration from config.ini file with comprehensiv
 """
 
 import configparser
-import os
 import logging
-from typing import Any, Dict, Optional, Tuple, List
-from pathlib import Path
+import os
+from typing import Any, Dict, Tuple, List
 
 
 class ConfigManager:
