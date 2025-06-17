@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Othman AI Assistant - Task Execution</title>
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<script type="module" src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fothmanai4433back.builtwithrocket.new&_be=https%3A%2F%2Fappproject.dhiwise.com&_v=0.1.3"></script>
+</head>
+<body class="bg-background min-h-screen flex flex-col">
+    <!-- Header Section -->
+    <header class="bg-surface border-b border-surface-600 px-4 py-3 flex items-center justify-between sticky top-0 z-50">
+        <div class="flex items-center space-x-3">
+            <!-- Back to Chat Button -->
+            <button onclick="window.location.href='main_chat_interface.html'" class="p-2 rounded-lg bg-surface-600 hover:bg-surface-500 transition-smooth">
+                <svg class="w-5 h-5 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                </svg>
+            </button>
+            
+            <!-- AI Assistant Logo -->
+            <div class="w-8 h-8 bg-gradient-to-br from-accent-400 to-accent-600 rounded-lg flex items-center justify-center">
+                <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                </svg>
+            </div>
+            <div>
+                <h1 class="text-xl font-semibold text-text-primary">Task Execution</h1>
+                <p class="text-xs text-text-secondary">Execute browser-based tasks</p>
+            </div>
+        </div>
+        
+        <!-- Settings Icon -->
+        <button onclick="window.location.href='settings_configuration.html'" class="p-2 rounded-lg bg-surface-600 hover:bg-surface-500 transition-smooth">
+            <svg class="w-5 h-5 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+        </button>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-1 flex overflow-hidden">
+        <!-- Task Categories Sidebar -->
+        <aside class="w-80 bg-surface border-r border-surface-600 overflow-y-auto hidden lg:block">
+            <div class="p-4">
+                <h2 class="text-lg font-semibold text-text-primary mb-4">Task Categories</h2>
+                
+                <!-- Time Management -->
+                <div class="mb-4">
+                    <button class="w-full text-left p-3 rounded-lg bg-surface-600 hover:bg-surface-500 transition-smooth" onclick="toggleCategory('time-management')">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                                <span class="font-medium text-text-primary">Time Management</span>
+                            </div>
+                            <svg class="w-4 h-4 text-text-secondary transform transition-transform" id="time-management-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </div>
+                    </button>
+                    <div id="time-management" class="hidden mt-2 ml-8 space-y-2">
+                        <div class="text-sm text-text-secondary">
+                            <p class="mb-2">Set reminders, schedule events, manage calendar</p>
+                            <div class="space-y-1">
+                                <p class="text-xs text-text-tertiary">• "Set reminder for 3 PM"</p>
+                                <p class="text-xs text-text-tertiary">• "Schedule meeting tomorrow"</p>
+                                <p class="text-xs text-text-tertiary">• "Show my calendar"</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- File Operations -->
+                <div class="mb-4">
+                    <button class="w-full text-left p-3 rounded-lg bg-surface-600 hover:bg-surface-500 transition-smooth" onclick="toggleCategory('file-operations')">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                                </svg>
+                                <span class="font-medium text-text-primary">File Operations</span>
+                            </div>
+                            <svg class="w-4 h-4 text-text-secondary transform transition-transform" id="file-operations-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </div>
+                    </button>
+                    <div id="file-operations" class="hidden mt-2 ml-8 space-y-2">
+                        <div class="text-sm text-text-secondary">
+                            <p class="mb-2">Search, organize, and manage files</p>
+                            <div class="space-y-1">
+                                <p class="text-xs text-text-tertiary">• "Search for PDF files"</p>
+                                <p class="text-xs text-text-tertiary">• "Create new folder"</p>
+                                <p class="text-xs text-text-tertiary">• "Download file"</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Web Navigation -->
+                <div class="mb-4">
+                    <button class="w-full text-left p-3 rounded-lg bg-surface-600 hover:bg-surface-500 transition-smooth" onclick="toggleCategory('web-navigation')">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9m0 9c-5 0-9-4-9-9s4-9 9-9"/>
+                                </svg>
+                                <span class="font-medium text-text-primary">Web Navigation</span>
+                            </div>
+                            <svg class="w-4 h-4 text-text-secondary transform transition-transform" id="web-navigation-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </div>
+                    </button>
+                    <div id="web-navigation" class="hidden mt-2 ml-8 space-y-2">
+                        <div class="text-sm text-text-secondary">
+                            <p class="mb-2">Navigate websites and manage tabs</p>
+                            <div class="space-y-1">
+                                <p class="text-xs text-text-tertiary">• "Open new tab"</p>
+                                <p class="text-xs text-text-tertiary">• "Go to website"</p>
+                                <p class="text-xs text-text-tertiary">• "Bookmark page"</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Calculations -->
+                <div class="mb-4">
+                    <button class="w-full text-left p-3 rounded-lg bg-surface-600 hover:bg-surface-500 transition-smooth" onclick="toggleCategory('calculations')">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+                                </svg>
+                                <span class="font-medium text-text-primary">Calculations</span>
+                            </div>
+                            <svg class="w-4 h-4 text-text-secondary transform transition-transform" id="calculations-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </div>
+                    </button>
+                    <div id="calculations" class="hidden mt-2 ml-8 space-y-2">
+                        <div class="text-sm text-text-secondary">
+                            <p class="mb-2">Perform mathematical calculations</p>
+                            <div class="space-y-1">
+                                <p class="text-xs text-text-tertiary">• "Calculate 15% of 200"</p>
+                                <p class="text-xs text-text-tertiary">• "Convert 50 USD to EUR"</p>
+                                <p class="text-xs text-text-tertiary">• "What's 25 * 8?"</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- System Integration -->
+                <div class="mb-4">
+                    <button class="w-full text-left p-3 rounded-lg bg-surface-600 hover:bg-surface-500 transition-smooth" onclick="toggleCategory('system-integration')">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                                </svg>
+                                <span class="font-medium text-text-primary">System Integration</span>
+                            </div>
+                            <svg class="w-4 h-4 text-text-secondary transform transition-transform" id="system-integration-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </div>
+                    </button>
+                    <div id="system-integration" class="hidden mt-2 ml-8 space-y-2">
+                        <div class="text-sm text-text-secondary">
+                            <p class="mb-2">Interact with system clipboard and notifications</p>
+                            <div class="space-y-1">
+                                <p class="text-xs text-text-tertiary">• "Copy to clipboard"</p>
+                                <p class="text-xs text-text-tertiary">• "Send notification"</p>
+                                <p class="text-xs text-text-tertiary">• "Get system info"</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Task Interface -->
+        <div class="flex-1 flex flex-col overflow-hidden">
+            <!-- Command Input Area -->
+            <div class="p-4 bg-surface border-b border-surface-600">
+                <div class="max-w-4xl mx-auto">
+                    <h3 class="text-lg font-semibold text-text-primary mb-3">Task Command</h3>
+                    <div class="relative">
+                        <input type="text" id="taskInput" placeholder="Type your task command (e.g., 'set reminder for 3 PM', 'calculate 15% of 200')" class="w-full bg-surface-600 text-text-primary placeholder-text-secondary rounded-lg px-4 py-3 pr-12 border border-surface-500 focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20 transition-smooth" />
+                        <button id="executeButton" class="absolute right-2 top-1/2 transform -translate-y-1/2 p-2 bg-accent hover:bg-accent-600 rounded-lg transition-smooth">
+                            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h.01M15 14h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                        </button>
+                    </div>
+                    
+                    <!-- Autocomplete Suggestions -->
+                    <div id="suggestions" class="hidden mt-2 bg-surface-600 rounded-lg border border-surface-500 shadow-elevated">
+                        <div class="p-2 space-y-1">
+                            <button class="w-full text-left px-3 py-2 text-sm text-text-secondary hover:bg-surface-500 rounded transition-smooth suggestion-item" data-command="set reminder">
+                                <span class="text-accent">set reminder</span> - Schedule a notification
+                            </button>
+                            <button class="w-full text-left px-3 py-2 text-sm text-text-secondary hover:bg-surface-500 rounded transition-smooth suggestion-item" data-command="open calendar">
+                                <span class="text-accent">open calendar</span> - View calendar events
+                            </button>
+                            <button class="w-full text-left px-3 py-2 text-sm text-text-secondary hover:bg-surface-500 rounded transition-smooth suggestion-item" data-command="search files">
+                                <span class="text-accent">search files</span> - Find files and documents
+                            </button>
+                            <button class="w-full text-left px-3 py-2 text-sm text-text-secondary hover:bg-surface-500 rounded transition-smooth suggestion-item" data-command="calculate">
+                                <span class="text-accent">calculate</span> - Perform mathematical operations
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Task Preview Section -->
+            <div id="taskPreview" class="hidden p-4 bg-surface-600 border-b border-surface-500">
+                <div class="max-w-4xl mx-auto">
+                    <h4 class="text-md font-medium text-text-primary mb-2">Task Preview</h4>
+                    <div class="bg-surface-700 rounded-lg p-4">
+                        <div class="flex items-start space-x-3">
+                            <div class="w-8 h-8 bg-warning rounded-lg flex items-center justify-center flex-shrink-0">
+                                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                            </div>
+                            <div class="flex-1">
+                                <p id="previewText" class="text-text-primary text-sm mb-3"></p>
+                                <div class="flex space-x-3">
+                                    <button id="confirmTask" class="px-4 py-2 bg-accent hover:bg-accent-600 text-white rounded-lg text-sm font-medium transition-smooth">
+                                        Execute Task
+                                    </button>
+                                    <button id="cancelTask" class="px-4 py-2 bg-surface-500 hover:bg-surface-400 text-text-primary rounded-lg text-sm font-medium transition-smooth">
+                                        Cancel
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content Area -->
+            <div class="flex-1 overflow-y-auto p-4">
+                <div class="max-w-4xl mx-auto">
+                    <!-- Welcome State -->
+                    <div id="welcomeState" class="text-center py-16">
+                        <div class="w-20 h-20 bg-gradient-to-br from-accent-400 to-accent-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
+                            </svg>
+                        </div>
+                        <h2 class="text-2xl font-semibold text-text-primary mb-4">Task Execution Interface</h2>
+                        <p class="text-text-secondary max-w-md mx-auto mb-8">Execute browser-based tasks through natural language commands. Type your task above or explore categories on the left.</p>
+                        
+                        <!-- Quick Actions -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-2xl mx-auto">
+                            <button class="p-4 bg-surface rounded-lg hover:bg-surface-600 transition-smooth text-left quick-action" data-command="set reminder for 3 PM today">
+                                <div class="flex items-center space-x-3 mb-2">
+                                    <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                    </svg>
+                                    <span class="font-medium text-text-primary">Set Reminder</span>
+                                </div>
+                                <p class="text-sm text-text-secondary">Schedule a notification</p>
+                            </button>
+                            
+                            <button class="p-4 bg-surface rounded-lg hover:bg-surface-600 transition-smooth text-left quick-action" data-command="calculate 15% of 200">
+                                <div class="flex items-center space-x-3 mb-2">
+                                    <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+                                    </svg>
+                                    <span class="font-medium text-text-primary">Calculate</span>
+                                </div>
+                                <p class="text-sm text-text-secondary">Perform calculations</p>
+                            </button>
+                            
+                            <button class="p-4 bg-surface rounded-lg hover:bg-surface-600 transition-smooth text-left quick-action" data-command="search for PDF files">
+                                <div class="flex items-center space-x-3 mb-2">
+                                    <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                                    </svg>
+                                    <span class="font-medium text-text-primary">Search Files</span>
+                                </div>
+                                <p class="text-sm text-text-secondary">Find documents</p>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Task Results Area -->
+                    <div id="taskResults" class="hidden">
+                        <div class="bg-surface rounded-lg p-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-lg font-semibold text-text-primary">Task Results</h3>
+                                <button id="undoTask" class="hidden px-3 py-1 bg-warning hover:bg-warning-600 text-white rounded text-sm transition-smooth">
+                                    Undo
+                                </button>
+                            </div>
+                            
+                            <!-- Progress Indicator -->
+                            <div id="progressIndicator" class="hidden mb-4">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-6 h-6 border-2 border-accent border-t-transparent rounded-full animate-spin"></div>
+                                    <span class="text-text-secondary">Executing task...</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Result Content -->
+                            <div id="resultContent" class="space-y-4">
+                                <!-- Dynamic content will be inserted here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile Category Toggle -->
+            <div class="lg:hidden fixed bottom-4 right-4">
+                <button id="mobileCategoryToggle" class="w-12 h-12 bg-accent hover:bg-accent-600 rounded-full flex items-center justify-center shadow-floating transition-smooth">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Mobile Category Overlay -->
+    <div id="mobileCategoryOverlay" class="hidden fixed inset-0 bg-background bg-opacity-90 z-50 lg:hidden">
+        <div class="flex flex-col h-full">
+            <div class="flex items-center justify-between p-4 border-b border-surface-600">
+                <h2 class="text-lg font-semibold text-text-primary">Task Categories</h2>
+                <button id="closeMobileCategories" class="p-2 rounded-lg bg-surface-600 hover:bg-surface-500 transition-smooth">
+                    <svg class="w-5 h-5 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="flex-1 overflow-y-auto p-4">
+                <!-- Mobile version of categories (same content as sidebar) -->
+                <div class="space-y-4">
+                    <!-- Categories content duplicated for mobile -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Error Toast -->
+    <div id="errorToast" class="hidden fixed top-4 left-4 right-4 bg-error text-white px-4 py-3 rounded-lg shadow-floating z-50">
+        <div class="flex items-center space-x-2">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+            </svg>
+            <span id="errorMessage">Task execution failed. Please try again.</span>
+        </div>
+    </div>
+
+    <!-- Success Toast -->
+    <div id="successToast" class="hidden fixed top-4 left-4 right-4 bg-success text-white px-4 py-3 rounded-lg shadow-floating z-50">
+        <div class="flex items-center space-x-2">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+            </svg>
+            <span id="successMessage">Task executed successfully!</span>
+        </div>
+    </div>
+
+    <script>
+        // DOM Elements
+        const taskInput = document.getElementById('taskInput');
+        const executeButton = document.getElementById('executeButton');
+        const suggestions = document.getElementById('suggestions');
+        const taskPreview = document.getElementById('taskPreview');
+        const previewText = document.getElementById('previewText');
+        const confirmTask = document.getElementById('confirmTask');
+        const cancelTask = document.getElementById('cancelTask');
+        const welcomeState = document.getElementById('welcomeState');
+        const taskResults = document.getElementById('taskResults');
+        const progressIndicator = document.getElementById('progressIndicator');
+        const resultContent = document.getElementById('resultContent');
+        const undoTask = document.getElementById('undoTask');
+        const mobileCategoryToggle = document.getElementById('mobileCategoryToggle');
+        const mobileCategoryOverlay = document.getElementById('mobileCategoryOverlay');
+        const closeMobileCategories = document.getElementById('closeMobileCategories');
+        const errorToast = document.getElementById('errorToast');
+        const successToast = document.getElementById('successToast');
+
+        let currentTask = null;
+        let taskHistory = [];
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            setupEventListeners();
+            setupAutocomplete();
+        });
+
+        function setupEventListeners() {
+            // Task input events
+            taskInput.addEventListener('input', handleInputChange);
+            taskInput.addEventListener('focus', showSuggestions);
+            taskInput.addEventListener('blur', () => {
+                setTimeout(hideSuggestions, 200); // Delay to allow clicking suggestions
+            });
+            taskInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    executeTask();
+                }
+            });
+
+            // Button events
+            executeButton.addEventListener('click', executeTask);
+            confirmTask.addEventListener('click', confirmTaskExecution);
+            cancelTask.addEventListener('click', cancelTaskExecution);
+            undoTask.addEventListener('click', undoLastTask);
+
+            // Mobile category events
+            mobileCategoryToggle.addEventListener('click', showMobileCategories);
+            closeMobileCategories.addEventListener('click', hideMobileCategories);
+            mobileCategoryOverlay.addEventListener('click', function(e) {
+                if (e.target === mobileCategoryOverlay) {
+                    hideMobileCategories();
+                }
+            });
+
+            // Quick action events
+            document.querySelectorAll('.quick-action').forEach(button => {
+                button.addEventListener('click', function() {
+                    const command = this.dataset.command;
+                    taskInput.value = command;
+                    executeTask();
+                });
+            });
+
+            // Suggestion events
+            document.querySelectorAll('.suggestion-item').forEach(item => {
+                item.addEventListener('click', function() {
+                    const command = this.dataset.command;
+                    taskInput.value = command;
+                    hideSuggestions();
+                    taskInput.focus();
+                });
+            });
+        }
+
+        function setupAutocomplete() {
+            // Autocomplete logic for task suggestions
+            const commonTasks = [
+                'set reminder',
+                'open calendar',
+                'search files',
+                'calculate',
+                'convert currency',
+                'create folder',
+                'copy to clipboard',
+                'send notification',
+                'open website',
+                'bookmark page'
+            ];
+
+            taskInput.addEventListener('input', function() {
+                const value = this.value.toLowerCase();
+                if (value.length > 0) {
+                    const matches = commonTasks.filter(task => task.includes(value));
+                    updateSuggestions(matches);
+                }
+            });
+        }
+
+        function updateSuggestions(matches) {
+            if (matches.length > 0) {
+                const suggestionItems = suggestions.querySelectorAll('.suggestion-item');
+                suggestionItems.forEach((item, index) => {
+                    if (matches[index]) {
+                        item.style.display = 'block';
+                        item.dataset.command = matches[index];
+                        item.innerHTML = `<span class="text-accent">${matches[index]}</span> - Execute this task`;
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+                showSuggestions();
+            } else {
+                hideSuggestions();
+            }
+        }
+
+        function handleInputChange() {
+            const value = taskInput.value.trim();
+            if (value.length > 0) {
+                showSuggestions();
+            } else {
+                hideSuggestions();
+            }
+        }
+
+        function showSuggestions() {
+            suggestions.classList.remove('hidden');
+        }
+
+        function hideSuggestions() {
+            suggestions.classList.add('hidden');
+        }
+
+        function executeTask() {
+            const command = taskInput.value.trim();
+            if (!command) {
+                showError('Please enter a task command');
+                return;
+            }
+
+            currentTask = {
+                command: command,
+                timestamp: new Date(),
+                id: Date.now()
+            };
+
+            showTaskPreview(command);
+        }
+
+        function showTaskPreview(command) {
+            const interpretation = interpretCommand(command);
+            previewText.textContent = interpretation;
+            taskPreview.classList.remove('hidden');
+            welcomeState.classList.add('hidden');
+        }
+
+        function interpretCommand(command) {
+            const lowerCommand = command.toLowerCase();
+            
+            if (lowerCommand.includes('reminder')) {
+                return `I'll set a reminder: "${command}". This will create a browser notification.`;
+            } else if (lowerCommand.includes('calculate') || lowerCommand.includes('math')) {
+                return `I'll perform the calculation: "${command}". The result will be displayed below.`;
+            } else if (lowerCommand.includes('search') || lowerCommand.includes('find')) {
+                return `I'll search for: "${command}". This will simulate a file search operation.`;
+            } else if (lowerCommand.includes('open') || lowerCommand.includes('navigate')) {
+                return `I'll navigate to: "${command}". This will open the specified location.`;
+            } else if (lowerCommand.includes('copy') || lowerCommand.includes('clipboard')) {
+                return `I'll copy to clipboard: "${command}". The content will be available for pasting.`;
+            } else {
+                return `I'll execute the task: "${command}". Please confirm to proceed.`;
+            }
+        }
+
+        function confirmTaskExecution() {
+            taskPreview.classList.add('hidden');
+            taskResults.classList.remove('hidden');
+            progressIndicator.classList.remove('hidden');
+
+            // Simulate task execution
+            setTimeout(() => {
+                executeTaskLogic(currentTask.command);
+            }, 1500);
+        }
+
+        function cancelTaskExecution() {
+            taskPreview.classList.add('hidden');
+            welcomeState.classList.remove('hidden');
+            currentTask = null;
+        }
+
+        function executeTaskLogic(command) {
+            progressIndicator.classList.add('hidden');
+            const lowerCommand = command.toLowerCase();
+            let result = '';
+
+            if (lowerCommand.includes('reminder')) {
+                result = createReminderResult(command);
+                scheduleNotification(command);
+            } else if (lowerCommand.includes('calculate')) {
+                result = createCalculationResult(command);
+            } else if (lowerCommand.includes('search')) {
+                result = createSearchResult(command);
+            } else if (lowerCommand.includes('copy')) {
+                result = createClipboardResult(command);
+                copyToClipboard(command);
+            } else {
+                result = createGenericResult(command);
+            }
+
+            resultContent.innerHTML = result;
+            taskHistory.push(currentTask);
+            undoTask.classList.remove('hidden');
+            showSuccess('Task executed successfully!');
+            
+            // Clear input
+            taskInput.value = '';
+        }
+
+        function createReminderResult(command) {
+            return `
+                <div class="bg-success-900 border border-success-600 rounded-lg p-4">
+                    <div class="flex items-center space-x-3">
+                        <svg class="w-6 h-6 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                  d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                        <div>
+                            <h4 class="font-medium text-success">Reminder Set</h4>
+                            <p class="text-sm text-success-200">Your reminder has been scheduled: "${command}"</p>
+                            <p class="text-xs text-success-300 mt-1">You'll receive a browser notification at the specified time.</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function createCalculationResult(command) {
+            // Simple calculation logic
+            const mathExpression = command.replace(/calculate|math|what's|what is/gi, '').trim();
+            let result = 'Unable to calculate';
+            
+            try {
+                // Basic calculation (in real app, use a proper math parser)
+                if (mathExpression.includes('%')) {
+                    const parts = mathExpression.match(/(\d+)%\s*of\s*(\d+)/);
+                    if (parts) {
+                        result = (parseInt(parts[1]) / 100 * parseInt(parts[2])).toString();
+                    }
+                } else {
+                    // Simple eval for demo (don't use in production)
+                    result = eval(mathExpression.replace(/[^0-9+\-*/().]/g, ''));
+                }
+            } catch (e) {
+                result = 'Invalid calculation';
+            }
+
+            return `
+                <div class="bg-accent-900 border border-accent-600 rounded-lg p-4">
+                    <div class="flex items-center space-x-3">
+                        <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                  d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+                        </svg>
+                        <div>
+                            <h4 class="font-medium text-accent">Calculation Result</h4>
+                            <p class="text-sm text-accent-200">Expression: ${mathExpression}</p>
+                            <p class="text-lg font-semibold text-accent mt-1">Result: ${result}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function createSearchResult(command) {
+            const searchTerm = command.replace(/search|find|look for/gi, '').trim();
+            return `
+                <div class="bg-surface-800 border border-surface-600 rounded-lg p-4">
+                    <div class="flex items-center space-x-3 mb-3">
+                        <svg class="w-6 h-6 text-text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                        </svg>
+                        <div>
+                            <h4 class="font-medium text-text-primary">Search Results</h4>
+                            <p class="text-sm text-text-secondary">Found 3 items matching "${searchTerm}"</p>
+                        </div>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="bg-surface-700 rounded p-3">
+                            <p class="text-sm font-medium text-text-primary">document.pdf</p>
+                            <p class="text-xs text-text-secondary">Modified 2 hours ago</p>
+                        </div>
+                        <div class="bg-surface-700 rounded p-3">
+                            <p class="text-sm font-medium text-text-primary">presentation.pptx</p>
+                            <p class="text-xs text-text-secondary">Modified yesterday</p>
+                        </div>
+                        <div class="bg-surface-700 rounded p-3">
+                            <p class="text-sm font-medium text-text-primary">notes.txt</p>
+                            <p class="text-xs text-text-secondary">Modified last week</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function createClipboardResult(command) {
+            return `
+                <div class="bg-warning-900 border border-warning-600 rounded-lg p-4">
+                    <div class="flex items-center space-x-3">
+                        <svg class="w-6 h-6 text-warning" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                  d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+                        </svg>
+                        <div>
+                            <h4 class="font-medium text-warning">Copied to Clipboard</h4>
+                            <p class="text-sm text-warning-200">Content has been copied and is ready to paste</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function createGenericResult(command) {
+            return `
+                <div class="bg-surface-800 border border-surface-600 rounded-lg p-4">
+                    <div class="flex items-center space-x-3">
+                        <svg class="w-6 h-6 text-text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                        <div>
+                            <h4 class="font-medium text-text-primary">Task Completed</h4>
+                            <p class="text-sm text-text-secondary">Successfully executed: "${command}"</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function scheduleNotification(command) {
+            // Request notification permission and schedule
+            if ('Notification' in window) {
+                Notification.requestPermission().then(permission => {
+                    if (permission === 'granted') {
+                        // In a real app, you'd parse the time and schedule accordingly
+                        setTimeout(() => {
+                            new Notification('Othman AI Reminder', {
+                                body: command,
+                                icon: '/favicon.ico'
+                            });
+                        }, 5000); // Demo: 5 seconds
+                    }
+                });
+            }
+        }
+
+        function copyToClipboard(text) {
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(text).catch(err => {
+                    console.error('Failed to copy to clipboard:', err);
+                });
+            }
+        }
+
+        function undoLastTask() {
+            if (taskHistory.length > 0) {
+                taskHistory.pop();
+                resultContent.innerHTML = '<p class="text-text-secondary">Last task has been undone.</p>';
+                undoTask.classList.add('hidden');
+                showSuccess('Task undone successfully!');
+            }
+        }
+
+        function toggleCategory(categoryId) {
+            const category = document.getElementById(categoryId);
+            const icon = document.getElementById(categoryId + '-icon');
+            
+            if (category.classList.contains('hidden')) {
+                category.classList.remove('hidden');
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                category.classList.add('hidden');
+                icon.style.transform = 'rotate(0deg)';
+            }
+        }
+
+        function showMobileCategories() {
+            mobileCategoryOverlay.classList.remove('hidden');
+        }
+
+        function hideMobileCategories() {
+            mobileCategoryOverlay.classList.add('hidden');
+        }
+
+        function showError(message) {
+            document.getElementById('errorMessage').textContent = message;
+            errorToast.classList.remove('hidden');
+            setTimeout(() => {
+                errorToast.classList.add('hidden');
+            }, 3000);
+        }
+
+        function showSuccess(message) {
+            document.getElementById('successMessage').textContent = message;
+            successToast.classList.remove('hidden');
+            setTimeout(() => {
+                successToast.classList.add('hidden');
+            }, 3000);
+        }
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey || e.metaKey) {
+                switch(e.key) {
+                    case 'k':
+                        e.preventDefault();
+                        taskInput.focus();
+                        break;
+                    case 'Enter':
+                        if (document.activeElement === taskInput) {
+                            e.preventDefault();
+                            executeTask();
+                        }
+                        break;
+                }
+            }
+        });
+    </script>
+<script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
+</body>
+</html>

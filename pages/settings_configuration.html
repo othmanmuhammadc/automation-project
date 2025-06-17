@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Settings Configuration - Othman AI Assistant</title>
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<script type="module" src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fothmanai4433back.builtwithrocket.new&_be=https%3A%2F%2Fappproject.dhiwise.com&_v=0.1.3"></script>
+</head>
+<body class="bg-background min-h-screen flex flex-col">
+    <!-- Header Section -->
+    <header class="bg-surface border-b border-surface-600 px-4 py-3 flex items-center justify-between sticky top-0 z-50">
+        <div class="flex items-center space-x-3">
+            <!-- Back Button -->
+            <button onclick="window.location.href='main_chat_interface.html'" class="p-2 rounded-lg bg-surface-600 hover:bg-surface-500 transition-smooth">
+                <svg class="w-5 h-5 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                </svg>
+            </button>
+            
+            <!-- AI Assistant Logo -->
+            <div class="w-8 h-8 bg-gradient-to-br from-accent-400 to-accent-600 rounded-lg flex items-center justify-center">
+                <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                </svg>
+            </div>
+            <h1 class="text-xl font-semibold text-text-primary">Settings</h1>
+        </div>
+        
+        <!-- Reset All Button -->
+        <button id="resetAllButton" class="px-4 py-2 text-sm bg-surface-600 hover:bg-surface-500 text-text-secondary rounded-lg transition-smooth">
+            Reset All
+        </button>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-1 overflow-y-auto">
+        <!-- Search Bar -->
+        <div class="px-4 py-4 bg-surface border-b border-surface-600">
+            <div class="relative">
+                <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                </svg>
+                <input type="text" id="searchSettings" placeholder="Search settings..." class="w-full pl-10 pr-4 py-2 bg-surface-600 border border-surface-500 rounded-lg text-text-primary placeholder-text-secondary focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20 transition-smooth" />
+            </div>
+        </div>
+
+        <!-- Settings Sections -->
+        <div class="px-4 py-6 space-y-4">
+            <!-- Appearance Section -->
+            <div class="card p-6">
+                <button class="settings-section-header w-full flex items-center justify-between" data-section="appearance">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-8 h-8 bg-accent/20 rounded-lg flex items-center justify-center">
+                            <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a2 2 0 002-2V5z"/>
+                            </svg>
+                        </div>
+                        <div class="text-left">
+                            <h3 class="text-lg font-semibold text-text-primary">Appearance</h3>
+                            <p class="text-sm text-text-secondary">Customize theme and display preferences</p>
+                        </div>
+                    </div>
+                    <svg class="w-5 h-5 text-text-secondary transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </button>
+                
+                <div class="settings-section-content mt-6 space-y-6" id="appearance-content">
+                    <!-- Theme Selection -->
+                    <div class="space-y-3">
+                        <label class="text-sm font-medium text-text-primary">Theme</label>
+                        <div class="grid grid-cols-3 gap-3">
+                            <label class="flex items-center space-x-2 p-3 border border-surface-500 rounded-lg cursor-pointer hover:border-accent transition-smooth">
+                                <input type="radio" name="theme" value="dark" checked class="text-accent focus:ring-accent" />
+                                <span class="text-sm text-text-primary">Dark</span>
+                            </label>
+                            <label class="flex items-center space-x-2 p-3 border border-surface-500 rounded-lg cursor-pointer hover:border-accent transition-smooth">
+                                <input type="radio" name="theme" value="light" class="text-accent focus:ring-accent" />
+                                <span class="text-sm text-text-primary">Light</span>
+                            </label>
+                            <label class="flex items-center space-x-2 p-3 border border-surface-500 rounded-lg cursor-pointer hover:border-accent transition-smooth">
+                                <input type="radio" name="theme" value="auto" class="text-accent focus:ring-accent" />
+                                <span class="text-sm text-text-primary">Auto</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Text Size -->
+                    <div class="space-y-3">
+                        <label class="text-sm font-medium text-text-primary">Text Size</label>
+                        <div class="space-y-2">
+                            <input type="range" id="textSize" min="12" max="20" value="14" class="w-full h-2 bg-surface-600 rounded-lg appearance-none cursor-pointer slider" />
+                            <div class="flex justify-between text-xs text-text-secondary">
+                                <span>Small</span>
+                                <span>Medium</span>
+                                <span>Large</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chat Bubble Style -->
+                    <div class="space-y-3">
+                        <label class="text-sm font-medium text-text-primary">Chat Bubble Style</label>
+                        <select class="w-full p-3 bg-surface-600 border border-surface-500 rounded-lg text-text-primary focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20">
+                            <option value="rounded">Rounded</option>
+                            <option value="square">Square</option>
+                            <option value="minimal">Minimal</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Voice & Audio Section -->
+            <div class="card p-6">
+                <button class="settings-section-header w-full flex items-center justify-between" data-section="voice">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-8 h-8 bg-accent/20 rounded-lg flex items-center justify-center">
+                            <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/>
+                            </svg>
+                        </div>
+                        <div class="text-left">
+                            <h3 class="text-lg font-semibold text-text-primary">Voice & Audio</h3>
+                            <p class="text-sm text-text-secondary">Configure speech and audio settings</p>
+                        </div>
+                    </div>
+                    <svg class="w-5 h-5 text-text-secondary transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </button>
+                
+                <div class="settings-section-content mt-6 space-y-6 hidden" id="voice-content">
+                    <!-- Speech-to-Text Sensitivity -->
+                    <div class="space-y-3">
+                        <label class="text-sm font-medium text-text-primary">Speech-to-Text Sensitivity</label>
+                        <div class="space-y-2">
+                            <input type="range" id="speechSensitivity" min="1" max="10" value="7" class="w-full h-2 bg-surface-600 rounded-lg appearance-none cursor-pointer slider" />
+                            <div class="flex justify-between text-xs text-text-secondary">
+                                <span>Low</span>
+                                <span>Medium</span>
+                                <span>High</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Voice Selection -->
+                    <div class="space-y-3">
+                        <label class="text-sm font-medium text-text-primary">Text-to-Speech Voice</label>
+                        <select class="w-full p-3 bg-surface-600 border border-surface-500 rounded-lg text-text-primary focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20">
+                            <option value="female1">Female Voice 1</option>
+                            <option value="male1">Male Voice 1</option>
+                            <option value="female2">Female Voice 2</option>
+                            <option value="male2">Male Voice 2</option>
+                        </select>
+                    </div>
+
+                    <!-- Audio Feedback -->
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <label class="text-sm font-medium text-text-primary">Audio Feedback</label>
+                            <p class="text-xs text-text-secondary">Play sounds for interactions</p>
+                        </div>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" checked class="sr-only peer" />
+                            <div class="w-11 h-6 bg-surface-600 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-accent/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-accent"></div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Language Preferences Section -->
+            <div class="card p-6">
+                <button class="settings-section-header w-full flex items-center justify-between" data-section="language">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-8 h-8 bg-accent/20 rounded-lg flex items-center justify-center">
+                            <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9m0 9c-5 0-9-4-9-9s4-9 9-9"/>
+                            </svg>
+                        </div>
+                        <div class="text-left">
+                            <h3 class="text-lg font-semibold text-text-primary">Language Preferences</h3>
+                            <p class="text-sm text-text-secondary">Set default languages and translation options</p>
+                        </div>
+                    </div>
+                    <svg class="w-5 h-5 text-text-secondary transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </button>
+                
+                <div class="settings-section-content mt-6 space-y-6 hidden" id="language-content">
+                    <!-- Interface Language -->
+                    <div class="space-y-3">
+                        <label class="text-sm font-medium text-text-primary">Interface Language</label>
+                        <select class="w-full p-3 bg-surface-600 border border-surface-500 rounded-lg text-text-primary focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20">
+                            <option value="en">English</option>
+                            <option value="ar">العربية</option>
+                            <option value="es">Español</option>
+                            <option value="fr">Français</option>
+                            <option value="de">Deutsch</option>
+                        </select>
+                    </div>
+
+                    <!-- Default Translation Languages -->
+                    <div class="space-y-3">
+                        <label class="text-sm font-medium text-text-primary">Default Translation From</label>
+                        <select class="w-full p-3 bg-surface-600 border border-surface-500 rounded-lg text-text-primary focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20">
+                            <option value="auto">Auto-detect</option>
+                            <option value="en">English</option>
+                            <option value="ar">Arabic</option>
+                            <option value="es">Spanish</option>
+                            <option value="fr">French</option>
+                        </select>
+                    </div>
+
+                    <div class="space-y-3">
+                        <label class="text-sm font-medium text-text-primary">Default Translation To</label>
+                        <select class="w-full p-3 bg-surface-600 border border-surface-500 rounded-lg text-text-primary focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20">
+                            <option value="en">English</option>
+                            <option value="ar">Arabic</option>
+                            <option value="es">Spanish</option>
+                            <option value="fr">French</option>
+                            <option value="de">German</option>
+                        </select>
+                    </div>
+
+                    <!-- Auto-translate -->
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <label class="text-sm font-medium text-text-primary">Auto-translate Messages</label>
+                            <p class="text-xs text-text-secondary">Automatically translate incoming messages</p>
+                        </div>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" class="sr-only peer" />
+                            <div class="w-11 h-6 bg-surface-600 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-accent/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-accent"></div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Privacy & Data Section -->
+            <div class="card p-6">
+                <button class="settings-section-header w-full flex items-center justify-between" data-section="privacy">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-8 h-8 bg-accent/20 rounded-lg flex items-center justify-center">
+                            <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                            </svg>
+                        </div>
+                        <div class="text-left">
+                            <h3 class="text-lg font-semibold text-text-primary">Privacy & Data</h3>
+                            <p class="text-sm text-text-secondary">Manage data storage and privacy settings</p>
+                        </div>
+                    </div>
+                    <svg class="w-5 h-5 text-text-secondary transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </button>
+                
+                <div class="settings-section-content mt-6 space-y-6 hidden" id="privacy-content">
+                    <!-- Conversation History -->
+                    <div class="space-y-3">
+                        <label class="text-sm font-medium text-text-primary">Conversation History</label>
+                        <select class="w-full p-3 bg-surface-600 border border-surface-500 rounded-lg text-text-primary focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20">
+                            <option value="forever">Keep Forever</option>
+                            <option value="30days">30 Days</option>
+                            <option value="7days">7 Days</option>
+                            <option value="never">Don't Save</option>
+                        </select>
+                    </div>
+
+                    <!-- Clear History Button -->
+                    <button class="w-full p-3 bg-error hover:bg-error-600 text-white rounded-lg transition-smooth">
+                        Clear All Conversation History
+                    </button>
+
+                    <!-- Data Collection -->
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <label class="text-sm font-medium text-text-primary">Analytics & Improvement</label>
+                            <p class="text-xs text-text-secondary">Help improve AI responses</p>
+                        </div>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" checked class="sr-only peer" />
+                            <div class="w-11 h-6 bg-surface-600 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-accent/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-accent"></div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Accessibility Section -->
+            <div class="card p-6">
+                <button class="settings-section-header w-full flex items-center justify-between" data-section="accessibility">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-8 h-8 bg-accent/20 rounded-lg flex items-center justify-center">
+                            <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                            </svg>
+                        </div>
+                        <div class="text-left">
+                            <h3 class="text-lg font-semibold text-text-primary">Accessibility</h3>
+                            <p class="text-sm text-text-secondary">Enhance usability and navigation</p>
+                        </div>
+                    </div>
+                    <svg class="w-5 h-5 text-text-secondary transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </button>
+                
+                <div class="settings-section-content mt-6 space-y-6 hidden" id="accessibility-content">
+                    <!-- Screen Reader Support -->
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <label class="text-sm font-medium text-text-primary">Screen Reader Support</label>
+                            <p class="text-xs text-text-secondary">Enhanced compatibility with screen readers</p>
+                        </div>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" class="sr-only peer" />
+                            <div class="w-11 h-6 bg-surface-600 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-accent/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-accent"></div>
+                        </label>
+                    </div>
+
+                    <!-- Keyboard Navigation -->
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <label class="text-sm font-medium text-text-primary">Enhanced Keyboard Navigation</label>
+                            <p class="text-xs text-text-secondary">Improved keyboard shortcuts and focus indicators</p>
+                        </div>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" checked class="sr-only peer" />
+                            <div class="w-11 h-6 bg-surface-600 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-accent/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-accent"></div>
+                        </label>
+                    </div>
+
+                    <!-- High Contrast Mode -->
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <label class="text-sm font-medium text-text-primary">High Contrast Mode</label>
+                            <p class="text-xs text-text-secondary">Increase contrast for better visibility</p>
+                        </div>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" class="sr-only peer" />
+                            <div class="w-11 h-6 bg-surface-600 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-accent/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-accent"></div>
+                        </label>
+                    </div>
+
+                    <!-- Reduced Motion -->
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <label class="text-sm font-medium text-text-primary">Reduce Motion</label>
+                            <p class="text-xs text-text-secondary">Minimize animations and transitions</p>
+                        </div>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" class="sr-only peer" />
+                            <div class="w-11 h-6 bg-surface-600 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-accent/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-accent"></div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="px-4 py-6 bg-surface border-t border-surface-600 sticky bottom-0">
+            <div class="flex space-x-3">
+                <button onclick="window.location.href='main_chat_interface.html'" class="flex-1 px-4 py-3 bg-surface-600 hover:bg-surface-500 text-text-primary rounded-lg transition-smooth">
+                    Cancel
+                </button>
+                <button id="saveChanges" class="flex-1 px-4 py-3 bg-accent hover:bg-accent-600 text-white rounded-lg transition-smooth">
+                    Save Changes
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Success Toast (Hidden by default) -->
+    <div id="successToast" class="hidden fixed top-4 left-4 right-4 bg-success text-white px-4 py-3 rounded-lg shadow-floating z-50">
+        <div class="flex items-center space-x-2">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+            </svg>
+            <span>Settings saved successfully!</span>
+        </div>
+    </div>
+
+    <!-- Confirmation Modal (Hidden by default) -->
+    <div id="confirmationModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div class="bg-surface rounded-xl p-6 max-w-sm w-full">
+            <h3 class="text-lg font-semibold text-text-primary mb-2">Reset All Settings?</h3>
+            <p class="text-text-secondary text-sm mb-6">This will reset all settings to their default values. This action cannot be undone.</p>
+            <div class="flex space-x-3">
+                <button id="cancelReset" class="flex-1 px-4 py-2 bg-surface-600 hover:bg-surface-500 text-text-primary rounded-lg transition-smooth">
+                    Cancel
+                </button>
+                <button id="confirmReset" class="flex-1 px-4 py-2 bg-error hover:bg-error-600 text-white rounded-lg transition-smooth">
+                    Reset
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Settings functionality
+        const settingsData = {
+            theme: 'dark',
+            textSize: 14,
+            chatBubbleStyle: 'rounded',
+            speechSensitivity: 7,
+            voiceSelection: 'female1',
+            audioFeedback: true,
+            interfaceLanguage: 'en',
+            translationFrom: 'auto',
+            translationTo: 'en',
+            autoTranslate: false,
+            conversationHistory: 'forever',
+            analytics: true,
+            screenReader: false,
+            keyboardNavigation: true,
+            highContrast: false,
+            reducedMotion: false
+        };
+
+        // Section toggle functionality
+        document.querySelectorAll('.settings-section-header').forEach(header => {
+            header.addEventListener('click', function() {
+                const section = this.dataset.section;
+                const content = document.getElementById(`${section}-content`);
+                const arrow = this.querySelector('svg:last-child');
+                
+                if (content.classList.contains('hidden')) {
+                    content.classList.remove('hidden');
+                    arrow.style.transform = 'rotate(180deg)';
+                } else {
+                    content.classList.add('hidden');
+                    arrow.style.transform = 'rotate(0deg)';
+                }
+            });
+        });
+
+        // Search functionality
+        const searchInput = document.getElementById('searchSettings');
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            const sections = document.querySelectorAll('.card');
+            
+            sections.forEach(section => {
+                const text = section.textContent.toLowerCase();
+                if (text.includes(searchTerm) || searchTerm === '') {
+                    section.style.display = 'block';
+                } else {
+                    section.style.display = 'none';
+                }
+            });
+        });
+
+        // Save settings functionality
+        document.getElementById('saveChanges').addEventListener('click', function() {
+            // Collect all form data
+            const formData = new FormData();
+            
+            // Get all form inputs
+            document.querySelectorAll('input, select').forEach(input => {
+                if (input.type === 'radio' && input.checked) {
+                    formData.append(input.name, input.value);
+                } else if (input.type === 'checkbox') {
+                    formData.append(input.name, input.checked);
+                } else if (input.type !== 'radio') {
+                    formData.append(input.name || input.id, input.value);
+                }
+            });
+
+            // Save to localStorage (in real app, this would be an API call)
+            localStorage.setItem('othmanAISettings', JSON.stringify(Object.fromEntries(formData)));
+            
+            // Show success toast
+            showSuccessToast();
+        });
+
+        // Reset all settings
+        document.getElementById('resetAllButton').addEventListener('click', function() {
+            document.getElementById('confirmationModal').classList.remove('hidden');
+        });
+
+        document.getElementById('cancelReset').addEventListener('click', function() {
+            document.getElementById('confirmationModal').classList.add('hidden');
+        });
+
+        document.getElementById('confirmReset').addEventListener('click', function() {
+            // Reset all form inputs to defaults
+            resetToDefaults();
+            document.getElementById('confirmationModal').classList.add('hidden');
+            showSuccessToast('Settings reset to defaults!');
+        });
+
+        // Show success toast
+        function showSuccessToast(message = 'Settings saved successfully!') {
+            const toast = document.getElementById('successToast');
+            toast.querySelector('span').textContent = message;
+            toast.classList.remove('hidden');
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 3000);
+        }
+
+        // Reset form to defaults
+        function resetToDefaults() {
+            // Reset radio buttons
+            document.querySelector('input[name="theme"][value="dark"]').checked = true;
+            
+            // Reset sliders
+            document.getElementById('textSize').value = 14;
+            document.getElementById('speechSensitivity').value = 7;
+            
+            // Reset selects
+            document.querySelectorAll('select').forEach(select => {
+                select.selectedIndex = 0;
+            });
+            
+            // Reset checkboxes
+            document.querySelectorAll('input[type="checkbox"]').forEach((checkbox, index) => {
+                // Set default values based on the design
+                const defaults = [true, true, false, true, false, true, false, false]; // Adjust as needed
+                checkbox.checked = defaults[index] || false;
+            });
+        }
+
+        // Load saved settings on page load
+        function loadSavedSettings() {
+            const saved = localStorage.getItem('othmanAISettings');
+            if (saved) {
+                const settings = JSON.parse(saved);
+                // Apply saved settings to form elements
+                Object.keys(settings).forEach(key => {
+                    const element = document.querySelector(`[name="${key}"], #${key}`);
+                    if (element) {
+                        if (element.type === 'checkbox') {
+                            element.checked = settings[key];
+                        } else if (element.type === 'radio') {
+                            document.querySelector(`[name="${key}"][value="${settings[key]}"]`).checked = true;
+                        } else {
+                            element.value = settings[key];
+                        }
+                    }
+                });
+            }
+        }
+
+        // Real-time preview for text size
+        document.getElementById('textSize').addEventListener('input', function() {
+            const size = this.value;
+            document.body.style.fontSize = size + 'px';
+        });
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSavedSettings();
+            
+            // Open first section by default
+            document.querySelector('[data-section="appearance"]').click();
+        });
+
+        // Handle unsaved changes warning
+        let hasUnsavedChanges = false;
+        
+        document.querySelectorAll('input, select').forEach(input => {
+            input.addEventListener('change', function() {
+                hasUnsavedChanges = true;
+            });
+        });
+
+        window.addEventListener('beforeunload', function(e) {
+            if (hasUnsavedChanges) {
+                e.preventDefault();
+                e.returnValue = '';
+            }
+        });
+
+        // Clear unsaved changes flag when saving
+        document.getElementById('saveChanges').addEventListener('click', function() {
+            hasUnsavedChanges = false;
+        });
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            // Ctrl/Cmd + S to save
+            if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+                e.preventDefault();
+                document.getElementById('saveChanges').click();
+            }
+            
+            // Escape to close modal
+            if (e.key === 'Escape') {
+                const modal = document.getElementById('confirmationModal');
+                if (!modal.classList.contains('hidden')) {
+                    modal.classList.add('hidden');
+                }
+            }
+        });
+
+        // Slider styling
+        const style = document.createElement('style');
+        style.textContent = `
+            .slider::-webkit-slider-thumb {
+                appearance: none;
+                height: 20px;
+                width: 20px;
+                border-radius: 50%;
+                background: var(--color-accent);
+                cursor: pointer;
+                border: 2px solid var(--color-surface);
+            }
+            
+            .slider::-moz-range-thumb {
+                height: 20px;
+                width: 20px;
+                border-radius: 50%;
+                background: var(--color-accent);
+                cursor: pointer;
+                border: 2px solid var(--color-surface);
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+<script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
+</body>
+</html>

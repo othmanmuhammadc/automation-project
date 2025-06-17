@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Othman AI Assistant - Main Chat</title>
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<script type="module" src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fothmanai4433back.builtwithrocket.new&_be=https%3A%2F%2Fappproject.dhiwise.com&_v=0.1.3"></script>
+</head>
+<body class="bg-background min-h-screen flex flex-col">
+    <!-- Header Section -->
+    <header class="bg-surface border-b border-surface-600 px-4 py-3 flex items-center justify-between sticky top-0 z-50">
+        <div class="flex items-center space-x-3">
+            <!-- AI Assistant Logo -->
+            <div class="w-8 h-8 bg-gradient-to-br from-accent-400 to-accent-600 rounded-lg flex items-center justify-center">
+                <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                </svg>
+            </div>
+            <h1 class="text-xl font-semibold text-text-primary">Othman AI</h1>
+        </div>
+        
+        <!-- Settings Icon -->
+        <button onclick="window.location.href='settings_configuration.html'" class="p-2 rounded-lg bg-surface-600 hover:bg-surface-500 transition-smooth">
+            <svg class="w-5 h-5 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+        </button>
+    </header>
+
+    <!-- Main Chat Container -->
+    <main class="flex-1 flex flex-col overflow-hidden">
+        <!-- Chat Messages Area -->
+        <div id="chatMessages" class="flex-1 overflow-y-auto px-4 py-6 space-y-4">
+            <!-- Welcome Message -->
+            <div class="flex justify-center mb-8">
+                <div class="text-center max-w-md">
+                    <div class="w-16 h-16 bg-gradient-to-br from-accent-400 to-accent-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                        </svg>
+                    </div>
+                    <h2 class="text-lg font-semibold text-text-primary mb-2">Welcome to Othman AI</h2>
+                    <p class="text-text-secondary text-sm">I'm here to help you with translations, tasks, and intelligent assistance. How can I help you today?</p>
+                </div>
+            </div>
+
+            <!-- Sample AI Message -->
+            <div class="flex items-start space-x-3">
+                <div class="w-8 h-8 bg-gradient-to-br from-accent-400 to-accent-600 rounded-full flex items-center justify-center flex-shrink-0">
+                    <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                    </svg>
+                </div>
+                <div class="message-bubble message-ai">
+                    <p class="text-sm">Hello! I'm Othman AI, your intelligent assistant. I can help you with translations, execute tasks, and provide assistance in multiple languages. What would you like to do today?</p>
+                    <span class="text-xs text-text-tertiary mt-2 block">Just now</span>
+                </div>
+            </div>
+
+            <!-- Loading Indicator (Hidden by default) -->
+            <div id="loadingIndicator" class="hidden flex items-start space-x-3">
+                <div class="w-8 h-8 bg-gradient-to-br from-accent-400 to-accent-600 rounded-full flex items-center justify-center flex-shrink-0">
+                    <svg class="w-4 h-4 text-white animate-spin" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"/>
+                    </svg>
+                </div>
+                <div class="message-bubble message-ai">
+                    <div class="flex space-x-1">
+                        <div class="w-2 h-2 bg-text-secondary rounded-full animate-pulse"></div>
+                        <div class="w-2 h-2 bg-text-secondary rounded-full animate-pulse" style="animation-delay: 0.2s"></div>
+                        <div class="w-2 h-2 bg-text-secondary rounded-full animate-pulse" style="animation-delay: 0.4s"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action Toolbar -->
+        <div class="px-4 py-3 bg-surface border-t border-surface-600">
+            <div class="flex items-center justify-center space-x-4 mb-3">
+                <!-- Language Selection -->
+                <button onclick="window.location.href='language_selection.html'" class="flex items-center space-x-2 px-4 py-2 bg-surface-600 hover:bg-surface-500 rounded-lg transition-smooth">
+                    <svg class="w-4 h-4 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9m0 9c-5 0-9-4-9-9s4-9 9-9"/>
+                    </svg>
+                    <span class="text-sm text-text-secondary">Language</span>
+                </button>
+
+                <!-- Translate Button -->
+                <button onclick="window.location.href='translation_service.html'" class="flex items-center space-x-2 px-4 py-2 bg-accent hover:bg-accent-600 rounded-lg transition-smooth">
+                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"/>
+                    </svg>
+                    <span class="text-sm text-white font-medium">Translate</span>
+                </button>
+
+                <!-- Task Button -->
+                <button onclick="window.location.href='task_execution_interface.html'" class="flex items-center space-x-2 px-4 py-2 bg-surface-600 hover:bg-surface-500 rounded-lg transition-smooth">
+                    <svg class="w-4 h-4 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
+                    </svg>
+                    <span class="text-sm text-text-secondary">Task</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Message Input Area -->
+        <div class="px-4 pb-4">
+            <div class="flex items-end space-x-3 bg-surface-600 rounded-2xl p-3">
+                <!-- Voice Input Button -->
+                <button id="voiceButton" class="p-2 rounded-lg bg-surface-700 hover:bg-surface-500 transition-smooth flex-shrink-0">
+                    <svg class="w-5 h-5 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/>
+                    </svg>
+                </button>
+
+                <!-- Message Input -->
+                <div class="flex-1">
+                    <textarea id="messageInput" placeholder="Type a message..." rows="1" class="w-full bg-transparent text-text-primary placeholder-text-secondary resize-none border-none outline-none text-sm leading-relaxed" style="max-height: 120px;"></textarea>
+                </div>
+
+                <!-- Send Button -->
+                <button id="sendButton" class="p-2 rounded-lg bg-accent hover:bg-accent-600 transition-smooth flex-shrink-0">
+                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Error Toast (Hidden by default) -->
+    <div id="errorToast" class="hidden fixed top-4 left-4 right-4 bg-error text-white px-4 py-3 rounded-lg shadow-floating z-50">
+        <div class="flex items-center space-x-2">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+            </svg>
+            <span id="errorMessage">Connection error. Please try again.</span>
+        </div>
+    </div>
+
+    <script>
+        // Auto-resize textarea
+        const messageInput = document.getElementById('messageInput');
+        const sendButton = document.getElementById('sendButton');
+        const voiceButton = document.getElementById('voiceButton');
+        const chatMessages = document.getElementById('chatMessages');
+        const loadingIndicator = document.getElementById('loadingIndicator');
+        const errorToast = document.getElementById('errorToast');
+
+        // Auto-resize textarea functionality
+        messageInput.addEventListener('input', function() {
+            this.style.height = 'auto';
+            this.style.height = Math.min(this.scrollHeight, 120) + 'px';
+        });
+
+        // Send message functionality
+        function sendMessage() {
+            const message = messageInput.value.trim();
+            if (!message) return;
+
+            // Add user message to chat
+            addMessage(message, 'user');
+            messageInput.value = '';
+            messageInput.style.height = 'auto';
+
+            // Show loading indicator
+            showLoading();
+
+            // Simulate AI response (replace with actual API call)
+            setTimeout(() => {
+                hideLoading();
+                addMessage("I understand your message. How can I assist you further?", 'ai');
+            }, 1500);
+        }
+
+        // Add message to chat
+        function addMessage(text, sender) {
+            const messageDiv = document.createElement('div');
+            const timestamp = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+            
+            if (sender === 'user') {
+                messageDiv.innerHTML = `
+                    <div class="flex items-start space-x-3 justify-end">
+                        <div class="message-bubble message-user">
+                            <p class="text-sm">${text}</p>
+                            <span class="text-xs text-blue-100 mt-2 block">${timestamp}</span>
+                        </div>
+                        <div class="w-8 h-8 bg-accent rounded-full flex items-center justify-center flex-shrink-0">
+                            <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                            </svg>
+                        </div>
+                    </div>
+                `;
+            } else {
+                messageDiv.innerHTML = `
+                    <div class="flex items-start space-x-3">
+                        <div class="w-8 h-8 bg-gradient-to-br from-accent-400 to-accent-600 rounded-full flex items-center justify-center flex-shrink-0">
+                            <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                            </svg>
+                        </div>
+                        <div class="message-bubble message-ai">
+                            <p class="text-sm">${text}</p>
+                            <span class="text-xs text-text-tertiary mt-2 block">${timestamp}</span>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Show/hide loading indicator
+        function showLoading() {
+            loadingIndicator.classList.remove('hidden');
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function hideLoading() {
+            loadingIndicator.classList.add('hidden');
+        }
+
+        // Show error toast
+        function showError(message) {
+            document.getElementById('errorMessage').textContent = message;
+            errorToast.classList.remove('hidden');
+            setTimeout(() => {
+                errorToast.classList.add('hidden');
+            }, 3000);
+        }
+
+        // Event listeners
+        sendButton.addEventListener('click', sendMessage);
+        messageInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendMessage();
+            }
+        });
+
+        // Voice input functionality (Web Speech API)
+        let isRecording = false;
+        let recognition;
+
+        if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            recognition = new SpeechRecognition();
+            recognition.continuous = false;
+            recognition.interimResults = false;
+            recognition.lang = 'en-US';
+
+            recognition.onstart = function() {
+                isRecording = true;
+                voiceButton.classList.add('bg-error');
+                voiceButton.innerHTML = `
+                    <svg class="w-5 h-5 text-white animate-pulse" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 14c1.66 0 2.99-1.34 2.99-3L15 5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.3-3c0 3-2.54 5.1-5.3 5.1S6.7 14 6.7 11H5c0 3.41 2.72 6.23 6 6.72V21h2v-3.28c3.28-.48 6-3.3 6-6.72h-1.7z"/>
+                    </svg>
+                `;
+            };
+
+            recognition.onresult = function(event) {
+                const transcript = event.results[0][0].transcript;
+                messageInput.value = transcript;
+                messageInput.dispatchEvent(new Event('input'));
+            };
+
+            recognition.onend = function() {
+                isRecording = false;
+                voiceButton.classList.remove('bg-error');
+                voiceButton.innerHTML = `
+                    <svg class="w-5 h-5 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                              d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/>
+                    </svg>
+                `;
+            };
+
+            recognition.onerror = function(event) {
+                showError('Voice recognition error. Please try again.');
+                isRecording = false;
+                voiceButton.classList.remove('bg-error');
+            };
+        }
+
+        voiceButton.addEventListener('click', function() {
+            if (!recognition) {
+                showError('Voice recognition not supported in this browser.');
+                return;
+            }
+
+            if (isRecording) {
+                recognition.stop();
+            } else {
+                recognition.start();
+            }
+        });
+
+        // Initialize chat scroll
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    </script>
+<script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
+</body>
+</html>

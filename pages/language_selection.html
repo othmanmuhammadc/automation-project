@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Language Selection - Othman AI Assistant</title>
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<script type="module" src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fothmanai4433back.builtwithrocket.new&_be=https%3A%2F%2Fappproject.dhiwise.com&_v=0.1.3"></script>
+</head>
+<body class="bg-background min-h-screen flex flex-col">
+    <!-- Header Section -->
+    <header class="bg-surface border-b border-surface-600 px-4 py-3 flex items-center justify-between sticky top-0 z-50">
+        <div class="flex items-center space-x-3">
+            <!-- Back Button -->
+            <button onclick="window.location.href='main_chat_interface.html'" class="p-2 rounded-lg bg-surface-600 hover:bg-surface-500 transition-smooth">
+                <svg class="w-5 h-5 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                </svg>
+            </button>
+            
+            <!-- AI Assistant Logo -->
+            <div class="w-8 h-8 bg-gradient-to-br from-accent-400 to-accent-600 rounded-lg flex items-center justify-center">
+                <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                </svg>
+            </div>
+            <h1 class="text-xl font-semibold text-text-primary">Language Selection</h1>
+        </div>
+        
+        <!-- Settings Icon -->
+        <button onclick="window.location.href='settings_configuration.html'" class="p-2 rounded-lg bg-surface-600 hover:bg-surface-500 transition-smooth">
+            <svg class="w-5 h-5 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+        </button>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-1 overflow-hidden flex flex-col">
+        <!-- Search Bar -->
+        <div class="px-4 py-4 bg-surface border-b border-surface-600">
+            <div class="relative">
+                <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                </svg>
+                <input type="text" id="languageSearch" placeholder="Search languages..." class="w-full pl-10 pr-4 py-3 bg-surface-600 border border-surface-500 rounded-lg text-text-primary placeholder-text-secondary focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20 transition-smooth" />
+            </div>
+        </div>
+
+        <!-- Language Categories -->
+        <div class="flex-1 overflow-y-auto px-4 py-6">
+            <!-- Frequently Used Section -->
+            <div class="mb-8">
+                <h2 class="text-lg font-semibold text-text-primary mb-4 flex items-center">
+                    <svg class="w-5 h-5 text-accent mr-2" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                    </svg>
+                    Frequently Used
+                </h2>
+                <div class="space-y-2">
+                    <!-- English -->
+                    <div class="language-item bg-surface-600 rounded-lg p-4 hover:bg-surface-500 transition-smooth cursor-pointer" data-language="en">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <img src="https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="English Flag" class="w-8 h-6 rounded object-cover" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                                <div>
+                                    <div class="text-text-primary font-medium">English</div>
+                                    <div class="text-text-secondary text-sm">English</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <!-- Interface Language -->
+                                <div class="flex items-center space-x-2">
+                                    <span class="text-xs text-text-secondary">Interface</span>
+                                    <input type="radio" name="interfaceLanguage" value="en" checked class="w-4 h-4 text-accent bg-surface border-surface-400 focus:ring-accent focus:ring-2" />
+                                </div>
+                                <!-- AI Language -->
+                                <div class="flex items-center space-x-2">
+                                    <span class="text-xs text-text-secondary">AI Chat</span>
+                                    <input type="checkbox" name="aiLanguage" value="en" checked class="w-4 h-4 text-accent bg-surface border-surface-400 rounded focus:ring-accent focus:ring-2" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Arabic -->
+                    <div class="language-item bg-surface-600 rounded-lg p-4 hover:bg-surface-500 transition-smooth cursor-pointer" data-language="ar">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Arabic Flag" class="w-8 h-6 rounded object-cover" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                                <div>
+                                    <div class="text-text-primary font-medium">العربية</div>
+                                    <div class="text-text-secondary text-sm">Arabic</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <!-- Interface Language -->
+                                <div class="flex items-center space-x-2">
+                                    <span class="text-xs text-text-secondary">Interface</span>
+                                    <input type="radio" name="interfaceLanguage" value="ar" class="w-4 h-4 text-accent bg-surface border-surface-400 focus:ring-accent focus:ring-2" />
+                                </div>
+                                <!-- AI Language -->
+                                <div class="flex items-center space-x-2">
+                                    <span class="text-xs text-text-secondary">AI Chat</span>
+                                    <input type="checkbox" name="aiLanguage" value="ar" class="w-4 h-4 text-accent bg-surface border-surface-400 rounded focus:ring-accent focus:ring-2" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Spanish -->
+                    <div class="language-item bg-surface-600 rounded-lg p-4 hover:bg-surface-500 transition-smooth cursor-pointer" data-language="es">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <img src="https://images.pexels.com/photos/208321/pexels-photo-208321.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Spanish Flag" class="w-8 h-6 rounded object-cover" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                                <div>
+                                    <div class="text-text-primary font-medium">Español</div>
+                                    <div class="text-text-secondary text-sm">Spanish</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <!-- Interface Language -->
+                                <div class="flex items-center space-x-2">
+                                    <span class="text-xs text-text-secondary">Interface</span>
+                                    <input type="radio" name="interfaceLanguage" value="es" class="w-4 h-4 text-accent bg-surface border-surface-400 focus:ring-accent focus:ring-2" />
+                                </div>
+                                <!-- AI Language -->
+                                <div class="flex items-center space-x-2">
+                                    <span class="text-xs text-text-secondary">AI Chat</span>
+                                    <input type="checkbox" name="aiLanguage" value="es" class="w-4 h-4 text-accent bg-surface border-surface-400 rounded focus:ring-accent focus:ring-2" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- All Languages Section -->
+            <div>
+                <h2 class="text-lg font-semibold text-text-primary mb-4 flex items-center">
+                    <svg class="w-5 h-5 text-accent mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9m0 9c-5 0-9-4-9-9s4-9 9-9"/>
+                    </svg>
+                    All Languages
+                </h2>
+                <div id="languageList" class="space-y-2">
+                    <!-- French -->
+                    <div class="language-item bg-surface-600 rounded-lg p-4 hover:bg-surface-500 transition-smooth cursor-pointer" data-language="fr">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <img src="https://images.pixabay.com/photo/2013/07/13/14/15/france-162295_1280.png" alt="French Flag" class="w-8 h-6 rounded object-cover" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                                <div>
+                                    <div class="text-text-primary font-medium">Français</div>
+                                    <div class="text-text-secondary text-sm">French</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <!-- Interface Language -->
+                                <div class="flex items-center space-x-2">
+                                    <span class="text-xs text-text-secondary">Interface</span>
+                                    <input type="radio" name="interfaceLanguage" value="fr" class="w-4 h-4 text-accent bg-surface border-surface-400 focus:ring-accent focus:ring-2" />
+                                </div>
+                                <!-- AI Language -->
+                                <div class="flex items-center space-x-2">
+                                    <span class="text-xs text-text-secondary">AI Chat</span>
+                                    <input type="checkbox" name="aiLanguage" value="fr" class="w-4 h-4 text-accent bg-surface border-surface-400 rounded focus:ring-accent focus:ring-2" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- German -->
+                    <div class="language-item bg-surface-600 rounded-lg p-4 hover:bg-surface-500 transition-smooth cursor-pointer" data-language="de">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <img src="https://images.pexels.com/photos/208321/pexels-photo-208321.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="German Flag" class="w-8 h-6 rounded object-cover" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                                <div>
+                                    <div class="text-text-primary font-medium">Deutsch</div>
+                                    <div class="text-text-secondary text-sm">German</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <!-- Interface Language -->
+                                <div class="flex items-center space-x-2">
+                                    <span class="text-xs text-text-secondary">Interface</span>
+                                    <input type="radio" name="interfaceLanguage" value="de" class="w-4 h-4 text-accent bg-surface border-surface-400 focus:ring-accent focus:ring-2" />
+                                </div>
+                                <!-- AI Language -->
+                                <div class="flex items-center space-x-2">
+                                    <span class="text-xs text-text-secondary">AI Chat</span>
+                                    <input type="checkbox" name="aiLanguage" value="de" class="w-4 h-4 text-accent bg-surface border-surface-400 rounded focus:ring-accent focus:ring-2" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chinese -->
+                    <div class="language-item bg-surface-600 rounded-lg p-4 hover:bg-surface-500 transition-smooth cursor-pointer" data-language="zh">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <img src="https://images.pixabay.com/photo/2012/04/10/23/04/china-26896_1280.png" alt="Chinese Flag" class="w-8 h-6 rounded object-cover" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                                <div>
+                                    <div class="text-text-primary font-medium">中文</div>
+                                    <div class="text-text-secondary text-sm">Chinese</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <!-- Interface Language -->
+                                <div class="flex items-center space-x-2">
+                                    <span class="text-xs text-text-secondary">Interface</span>
+                                    <input type="radio" name="interfaceLanguage" value="zh" class="w-4 h-4 text-accent bg-surface border-surface-400 focus:ring-accent focus:ring-2" />
+                                </div>
+                                <!-- AI Language -->
+                                <div class="flex items-center space-x-2">
+                                    <span class="text-xs text-text-secondary">AI Chat</span>
+                                    <input type="checkbox" name="aiLanguage" value="zh" class="w-4 h-4 text-accent bg-surface border-surface-400 rounded focus:ring-2" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Japanese -->
+                    <div class="language-item bg-surface-600 rounded-lg p-4 hover:bg-surface-500 transition-smooth cursor-pointer" data-language="ja">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <img src="https://images.unsplash.com/photo-1528164344705-47542687000d?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Japanese Flag" class="w-8 h-6 rounded object-cover" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                                <div>
+                                    <div class="text-text-primary font-medium">日本語</div>
+                                    <div class="text-text-secondary text-sm">Japanese</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <!-- Interface Language -->
+                                <div class="flex items-center space-x-2">
+                                    <span class="text-xs text-text-secondary">Interface</span>
+                                    <input type="radio" name="interfaceLanguage" value="ja" class="w-4 h-4 text-accent bg-surface border-surface-400 focus:ring-accent focus:ring-2" />
+                                </div>
+                                <!-- AI Language -->
+                                <div class="flex items-center space-x-2">
+                                    <span class="text-xs text-text-secondary">AI Chat</span>
+                                    <input type="checkbox" name="aiLanguage" value="ja" class="w-4 h-4 text-accent bg-surface border-surface-400 rounded focus:ring-accent focus:ring-2" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Russian -->
+                    <div class="language-item bg-surface-600 rounded-lg p-4 hover:bg-surface-500 transition-smooth cursor-pointer" data-language="ru">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <img src="https://images.pexels.com/photos/208321/pexels-photo-208321.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Russian Flag" class="w-8 h-6 rounded object-cover" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                                <div>
+                                    <div class="text-text-primary font-medium">Русский</div>
+                                    <div class="text-text-secondary text-sm">Russian</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <!-- Interface Language -->
+                                <div class="flex items-center space-x-2">
+                                    <span class="text-xs text-text-secondary">Interface</span>
+                                    <input type="radio" name="interfaceLanguage" value="ru" class="w-4 h-4 text-accent bg-surface border-surface-400 focus:ring-accent focus:ring-2" />
+                                </div>
+                                <!-- AI Language -->
+                                <div class="flex items-center space-x-2">
+                                    <span class="text-xs text-text-secondary">AI Chat</span>
+                                    <input type="checkbox" name="aiLanguage" value="ru" class="w-4 h-4 text-accent bg-surface border-surface-400 rounded focus:ring-accent focus:ring-2" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Preview Section -->
+        <div class="px-4 py-4 bg-surface border-t border-surface-600">
+            <div class="bg-surface-600 rounded-lg p-4">
+                <h3 class="text-sm font-medium text-text-primary mb-2">Preview</h3>
+                <div id="previewText" class="text-text-secondary text-sm">
+                    Hello! I'm Othman AI, your intelligent assistant.
+                </div>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="px-4 py-4 bg-surface border-t border-surface-600">
+            <div class="flex space-x-3">
+                <button onclick="window.location.href='main_chat_interface.html'" class="flex-1 px-4 py-3 bg-surface-600 hover:bg-surface-500 text-text-primary rounded-lg transition-smooth font-medium">
+                    Cancel
+                </button>
+                <button id="applyChanges" class="flex-1 px-4 py-3 bg-accent hover:bg-accent-600 text-white rounded-lg transition-smooth font-medium">
+                    Apply Changes
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Success Toast (Hidden by default) -->
+    <div id="successToast" class="hidden fixed top-4 left-4 right-4 bg-success text-white px-4 py-3 rounded-lg shadow-floating z-50">
+        <div class="flex items-center space-x-2">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+            </svg>
+            <span>Language settings updated successfully!</span>
+        </div>
+    </div>
+
+    <script>
+        // Language data with preview text
+        const languageData = {
+            'en': { preview: "Hello! I'm Othman AI, your intelligent assistant." },
+            'ar': { preview: "مرحباً! أنا عثمان الذكي، مساعدك الذكي." },
+            'es': { preview: "¡Hola! Soy Othman AI, tu asistente inteligente." },
+            'fr': { preview: "Bonjour! Je suis Othman AI, votre assistant intelligent." },
+            'de': { preview: "Hallo! Ich bin Othman AI, Ihr intelligenter Assistent." },
+            'zh': { preview: "你好！我是奥斯曼人工智能，您的智能助手。" },
+            'ja': { preview: "こんにちは！私はオスマンAI、あなたの知的アシスタントです。" },
+            'ru': { preview: "Привет! Я Осман ИИ, ваш умный помощник." }
+        };
+
+        // DOM elements
+        const searchInput = document.getElementById('languageSearch');
+        const languageList = document.getElementById('languageList');
+        const previewText = document.getElementById('previewText');
+        const applyButton = document.getElementById('applyChanges');
+        const successToast = document.getElementById('successToast');
+
+        // Search functionality
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            const languageItems = document.querySelectorAll('.language-item');
+            
+            languageItems.forEach(item => {
+                const languageName = item.querySelector('.text-text-primary').textContent.toLowerCase();
+                const englishName = item.querySelector('.text-text-secondary').textContent.toLowerCase();
+                
+                if (languageName.includes(searchTerm) || englishName.includes(searchTerm)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+
+        // Interface language selection
+        document.querySelectorAll('input[name="interfaceLanguage"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                if (this.checked) {
+                    updatePreview(this.value);
+                    updateTextDirection(this.value);
+                }
+            });
+        });
+
+        // Update preview text
+        function updatePreview(languageCode) {
+            if (languageData[languageCode]) {
+                previewText.textContent = languageData[languageCode].preview;
+            }
+        }
+
+        // Update text direction for RTL languages
+        function updateTextDirection(languageCode) {
+            const rtlLanguages = ['ar'];
+            const body = document.body;
+            
+            if (rtlLanguages.includes(languageCode)) {
+                body.style.direction = 'rtl';
+                body.classList.add('rtl');
+            } else {
+                body.style.direction = 'ltr';
+                body.classList.remove('rtl');
+            }
+        }
+
+        // Apply changes
+        applyButton.addEventListener('click', function() {
+            const selectedInterface = document.querySelector('input[name="interfaceLanguage"]:checked');
+            const selectedAILanguages = document.querySelectorAll('input[name="aiLanguage"]:checked');
+            
+            // Save to localStorage (in a real app, this would be sent to a server)
+            const settings = {
+                interfaceLanguage: selectedInterface ? selectedInterface.value : 'en',
+                aiLanguages: Array.from(selectedAILanguages).map(cb => cb.value),
+                timestamp: new Date().toISOString()
+            };
+            
+            localStorage.setItem('languageSettings', JSON.stringify(settings));
+            
+            // Show success toast
+            showSuccessToast();
+            
+            // Redirect after a short delay
+            setTimeout(() => {
+                window.location.href = 'main_chat_interface.html';
+            }, 1500);
+        });
+
+        // Show success toast
+        function showSuccessToast() {
+            successToast.classList.remove('hidden');
+            setTimeout(() => {
+                successToast.classList.add('hidden');
+            }, 3000);
+        }
+
+        // Load saved settings
+        function loadSavedSettings() {
+            const saved = localStorage.getItem('languageSettings');
+            if (saved) {
+                const settings = JSON.parse(saved);
+                
+                // Set interface language
+                const interfaceRadio = document.querySelector(`input[name="interfaceLanguage"][value="${settings.interfaceLanguage}"]`);
+                if (interfaceRadio) {
+                    interfaceRadio.checked = true;
+                    updatePreview(settings.interfaceLanguage);
+                    updateTextDirection(settings.interfaceLanguage);
+                }
+                
+                // Set AI languages
+                settings.aiLanguages.forEach(lang => {
+                    const checkbox = document.querySelector(`input[name="aiLanguage"][value="${lang}"]`);
+                    if (checkbox) {
+                        checkbox.checked = true;
+                    }
+                });
+            }
+        }
+
+        // Language item click handling
+        document.querySelectorAll('.language-item').forEach(item => {
+            item.addEventListener('click', function(e) {
+                // Don't trigger if clicking on radio/checkbox
+                if (e.target.type === 'radio' || e.target.type === 'checkbox') {
+                    return;
+                }
+                
+                const languageCode = this.dataset.language;
+                const interfaceRadio = this.querySelector('input[name="interfaceLanguage"]');
+                
+                if (interfaceRadio) {
+                    interfaceRadio.checked = true;
+                    updatePreview(languageCode);
+                    updateTextDirection(languageCode);
+                }
+            });
+        });
+
+        // Initialize
+        loadSavedSettings();
+    </script>
+<script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
+</body>
+</html>
